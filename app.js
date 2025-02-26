@@ -2,7 +2,10 @@ const express = require('express');
 const app = express();
 require('dotenv').config();
 const port = process.env.port;
-
+const bodyParser = require('body-parser');
+require('./model/index');
+const User = require('./model/registerSchema');
+app.use(bodyParser.json());
 
 
 // Set view engine
