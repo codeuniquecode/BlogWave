@@ -1,4 +1,5 @@
 const user = require('../model/registerSchema');
+const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 exports.home = (req, res) => {
     res.render('home');
@@ -31,6 +32,12 @@ exports.loginUser = async (req, res) => {
     if(validEmail){
         const validPassword = await bcrypt.compare(password, validEmail.password);
         if(validPassword){
+            const token = jwt.sign({id:validEmail._id},process.env.SECRETKEY,{
+                expiresIn:'1d'
+            });
+            res.cookie("token", token,{
+                maxAge:24*60*60*1000
+            });
             return res.status(201).json({message:"login success"});
         }else{
             return res.status(404).json({ message:"invalid password" });

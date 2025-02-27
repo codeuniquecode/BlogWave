@@ -3,9 +3,11 @@ const app = express();
 require('dotenv').config();
 const port = process.env.port;
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 require('./model/index');
 const User = require('./model/registerSchema');
 app.use(bodyParser.json());
+app.use(cookieParser());
 
 
 // Set view engine
