@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const {promisify} = require('util');
 const user = require('../model/registerSchema');
+const { decrypt } = require('dotenv');
 
 exports.isAuthenticated = async (req,res,next)=>{
     const token = req.cookies.token;
@@ -16,8 +17,8 @@ exports.isAuthenticated = async (req,res,next)=>{
 
     }
     else{
+        //  res.status(200).json({ error: decryptedResult });
         req.user = decryptedResult.id;
-        res.status(200).json({ message: "User found" ,validUser});
         next();
     }
    

@@ -1,6 +1,7 @@
 const user = require('../model/registerSchema');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const blog = require('../model/blogSchema');
 exports.home = (req, res) => {
     res.render('home');
     return res.status(200).json({ message: "home page here" });
@@ -51,3 +52,38 @@ exports.logout = (req, res) => {
     res.clearCookie('token');
    return res.status(200).json({ message: "Logged out successfully." });
 };
+exports.renderAllBlogs = async(req,res)=>{
+    const blogs = await blog.find();
+    if(blogs){
+        return res.status(200).json({ blogs });
+    }
+    else{
+        
+    return res.status(404).json({ error: "Blogs not found" });
+    }
+}
+exports.postBlog = async(req,res)=>{
+    // return res.status(404).json({ error: req.user });
+    const validAuthor = await user.findOne({
+        _id:req.user
+    });
+    if(!validAuthor){
+        return res.status(404).json({ error: "Invalid Author" });
+    }
+    // return res.status(404).json({ error: {validAuthor} });
+    const {title,description,image} = req.body;
+    const newBlog = new blog({
+        title,
+        description,
+        author:validAuthor.name,
+        image
+    });
+    await newBlog.save();
+    if(newBlog){
+        return res.status(201).json({ message:"Blog posted successfully."});
+    }
+    else{
+        return res.status(404).json({ error: "Error in posting blogs." });
+    }
+
+}
