@@ -100,9 +100,17 @@ exports.deleteBlog = async(req,res)=>{
         const blogData = await blog.findByIdAndDelete(req.params.id);
         return res.status(200).json({message:"blog deleted successfully.",blogData});
     } catch (error) {
-        return res.status(404).json({ error: "Error in deleting blog.",error });
+        console.log(error);
+        return res.status(404).json({ error: "error in deleting blog" });
     }
 }
-// GET /blogs/:id → Get a specific blog post
-// PUT /blogs/:id → Update a blog post
-// DELETE /blogs/:id → Delete a blog pos
+exports.updateBlog = async (req,res)=>{
+    try {
+        const blogData = await blog.findByIdAndUpdate(req.params.id,req.body);
+        return res.status(201).json({message:"blog updated successfylly",blogData});
+
+    } catch (error) {
+        console.log(error);
+        return res.status(404).json({ error: "error in updating blog." });
+    }
+}
