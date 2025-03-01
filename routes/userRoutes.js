@@ -14,5 +14,5 @@ router.route('/login').post(userController.loginUser);
 router.route('/test').get(isAuthenticated);
 router.route('/logout').get(userController.logout);
 router.route('/blogs').get(userController.renderAllBlogs).post(isAuthenticated,userController.postBlog);
-
+router.route('/blogs/:id').get(userController.renderSingleBlog).delete(userController.deleteBlog);
 module.exports = router;

@@ -87,3 +87,22 @@ exports.postBlog = async(req,res)=>{
     }
 
 }
+exports.renderSingleBlog = async(req,res)=>{
+   try {
+    const blogData = await blog.findById(req.params.id);
+    return res.status(200).json({message:"blog found.",blogData});
+   } catch (error) {
+    return res.status(404).json({message:"error in finding blog-invalid id", error})
+   }
+}
+exports.deleteBlog = async(req,res)=>{
+    try {
+        const blogData = await blog.findByIdAndDelete(req.params.id);
+        return res.status(200).json({message:"blog deleted successfully.",blogData});
+    } catch (error) {
+        return res.status(404).json({ error: "Error in deleting blog.",error });
+    }
+}
+// GET /blogs/:id → Get a specific blog post
+// PUT /blogs/:id → Update a blog post
+// DELETE /blogs/:id → Delete a blog pos
