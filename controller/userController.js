@@ -114,3 +114,51 @@ exports.updateBlog = async (req,res)=>{
         return res.status(404).json({ error: "error in updating blog." });
     }
 }
+// GET /users/:id → Get user profile
+// PUT /users/:id → Update user profile
+// DELETE /users/:id → Delete user account (optional)
+
+exports.renderAllUsers = async (req,res)=>{
+    try{
+    const userData = await user.find();
+    return res.status(200).json({userData});
+    }
+    catch(error){
+        console.log(error);
+        return res.status(404).json({error:"error in fetching user data"});
+    }
+
+}
+exports.renderUser = async(req,res)=>{
+    try{
+        const userData = await user.findById(req.params.id);
+        return res.status(200).json({userData});
+    }
+    catch(error){
+        console.log(error);
+        return res.status(404).json({error:"error in rendering user data"});
+    }
+}
+exports.updateUser = async(req,res)=>{
+    try{
+        const userData = await user.findByIdAndUpdate(req.params.id, req.body);
+        return res.status(200).json({message:"user updated successfully",userData});
+    }
+    catch(error){
+        console.log(error);
+    
+        return res.status(404).json({error:"error in updating user data"});
+        
+    }
+}
+exports.deleteUser = async(req,res)=>{
+    try{
+        await user.findByIdAndDelete(req.params.id);
+        return res.status(200).json({message:"user data deleting successfully."});
+    }
+    catch(error){
+        console.log(error);
+        
+        return res.status(404).json({error:"error in deleting user data"});
+    }
+}
