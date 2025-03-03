@@ -18,6 +18,7 @@ const userRoutes = require('./routes/userRoutes');
 const blogRoutes = require('./routes/blogRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 app.use('/',userRoutes);
+app.use('/',blogRoutes);
 
 app.listen(port,()=>{
     console.log('server is running on port - ', port);

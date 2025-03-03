@@ -52,72 +52,6 @@ exports.logout = (req, res) => {
     res.clearCookie('token');
    return res.status(200).json({ message: "Logged out successfully." });
 };
-exports.renderAllBlogs = async(req,res)=>{
-    const blogs = await blog.find();
-    if(blogs){
-        return res.status(200).json({ blogs });
-    }
-    else{
-        
-    return res.status(404).json({ error: "Blogs not found" });
-    }
-}
-exports.postBlog = async(req,res)=>{
-    // return res.status(404).json({ error: req.user });
-    const validAuthor = await user.findOne({
-        _id:req.user
-    });
-    if(!validAuthor){
-        return res.status(404).json({ error: "Invalid Author" });
-    }
-    // return res.status(404).json({ error: {validAuthor} });
-    const {title,description,image} = req.body;
-    const newBlog = new blog({
-        title,
-        description,
-        author:validAuthor.name,
-        image
-    });
-    await newBlog.save();
-    if(newBlog){
-        return res.status(201).json({ message:"Blog posted successfully."});
-    }
-    else{
-        return res.status(404).json({ error: "Error in posting blogs." });
-    }
-
-}
-exports.renderSingleBlog = async(req,res)=>{
-   try {
-    const blogData = await blog.findById(req.params.id);
-    return res.status(200).json({message:"blog found.",blogData});
-   } catch (error) {
-    return res.status(404).json({message:"error in finding blog-invalid id", error})
-   }
-}
-exports.deleteBlog = async(req,res)=>{
-    try {
-        const blogData = await blog.findByIdAndDelete(req.params.id);
-        return res.status(200).json({message:"blog deleted successfully.",blogData});
-    } catch (error) {
-        console.log(error);
-        return res.status(404).json({ error: "error in deleting blog" });
-    }
-}
-exports.updateBlog = async (req,res)=>{
-    try {
-        const blogData = await blog.findByIdAndUpdate(req.params.id,req.body);
-        return res.status(201).json({message:"blog updated successfylly",blogData});
-
-    } catch (error) {
-        console.log(error);
-        return res.status(404).json({ error: "error in updating blog." });
-    }
-}
-// GET /users/:id → Get user profile
-// PUT /users/:id → Update user profile
-// DELETE /users/:id → Delete user account (optional)
-
 exports.renderAllUsers = async (req,res)=>{
     try{
     const userData = await user.find();
@@ -132,6 +66,9 @@ exports.renderAllUsers = async (req,res)=>{
 exports.renderUser = async(req,res)=>{
     try{
         const userData = await user.findById(req.params.id);
+        if(!userData){
+            return res.status(404).json({message:"user not found"});
+        }
         return res.status(200).json({userData});
     }
     catch(error){
@@ -142,6 +79,9 @@ exports.renderUser = async(req,res)=>{
 exports.updateUser = async(req,res)=>{
     try{
         const userData = await user.findByIdAndUpdate(req.params.id, req.body);
+        if(!userData){
+            return res.status(404).json({message:"user not found"});
+        }
         return res.status(200).json({message:"user updated successfully",userData});
     }
     catch(error){
@@ -153,7 +93,10 @@ exports.updateUser = async(req,res)=>{
 }
 exports.deleteUser = async(req,res)=>{
     try{
-        await user.findByIdAndDelete(req.params.id);
+        const userData = await user.findByIdAndDelete(req.params.id);
+        if(!userData){
+            return res.status(404).json({message:"user not found"});
+        }
         return res.status(200).json({message:"user data deleting successfully."});
     }
     catch(error){
@@ -162,3 +105,4 @@ exports.deleteUser = async(req,res)=>{
         return res.status(404).json({error:"error in deleting user data"});
     }
 }
+
