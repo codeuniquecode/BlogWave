@@ -9,11 +9,15 @@ const User = require('./model/registerSchema');
 app.use(bodyParser.json());
 app.use(cookieParser());
 
+const multer = require('./middleware/multerConfig').multer;
+const storage = require('./middleware/multerConfig').storage;
+const upload = multer({storage:storage});
 
 // Set view engine
 app.set('view engine', 'ejs');
 app.set('views', './views'); // Set the views directory
 
+app.use(express.static('./storage/'));
 const userRoutes = require('./routes/userRoutes');
 const blogRoutes = require('./routes/blogRoutes');
 const adminRoutes = require('./routes/adminRoutes');

@@ -20,12 +20,12 @@ exports.postBlog = async(req,res)=>{
         return res.status(404).json({ error: "Invalid Author" });
     }
     // return res.status(404).json({ error: {validAuthor} });
-    const {title,description,image} = req.body;
+    const {title,description} = req.body;
     const newBlog = new blog({
         title,
         description,
         author:validAuthor.name,
-        image
+        image:req.file.filename
     });
     await newBlog.save();
     if(newBlog){
