@@ -24,8 +24,8 @@ exports.postBlog = async(req,res)=>{
     const newBlog = new blog({
         title,
         description,
-        author:validAuthor.name,
-        image:req.file.filename
+        image:req.file.filename,
+        author:req.user
     });
     await newBlog.save();
     if(newBlog){
@@ -46,6 +46,20 @@ exports.renderSingleBlog = async(req,res)=>{
    } catch (error) {
     return res.status(404).json({message:"error in finding blog-invalid id", error})
    }
+}
+exports.renderMyBlog = async(req,res)=>{
+    try{
+        const blogData =  await blog.find({ author: req.user }).populate("author");
+        if(!blogData){
+            return res.status(404).json({message:"blog not found"});
+        }
+        return res.status(200).json({blogData});
+
+    }
+    catch(error){
+        console.log(error);
+        return res.status(404).json({message:"error in rendering your blog"});
+    }
 }
 exports.deleteBlog = async(req,res)=>{
     try {

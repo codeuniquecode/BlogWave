@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const moment = require('moment');
-
+const user = require('./registerSchema');
 const date = new Date(Date.now());
 const blogSchema = mongoose.Schema({
     // title,description,author,image,date
@@ -13,8 +13,8 @@ const blogSchema = mongoose.Schema({
         required:true
     },
     author:{
-        type:String,
-        // required:true
+        type: mongoose.Schema.Types.ObjectId,
+         ref: 'User' 
     },
     image:{
         type:String,

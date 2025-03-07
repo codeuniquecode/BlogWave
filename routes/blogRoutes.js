@@ -10,6 +10,7 @@ const upload = multer({storage:storage});
 router.route('/blogs').get(blogController.renderAllBlogs).post(isAuthenticated,upload.single('image'),blogController.postBlog);
 router.route('/blogs/:id').get(blogController.renderSingleBlog).delete(blogController.deleteBlog).put(blogController.updateBlog);
 
+router.route('/myBlogs').get(isAuthenticated,blogController.renderMyBlog);
 
 
 module.exports = router;

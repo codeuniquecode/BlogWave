@@ -7,7 +7,7 @@ router.route('/').get(userController.home);
 router.route('/register').post(userController.registerUser);
 router.route('/login').post(userController.loginUser);
 router.route('/test').get(isAuthenticated);
-router.route('/logout').get(userController.logout);
+router.route('/logout').post(userController.logout);
 
 //user apis
 router.route('/users').get(userController.renderAllUsers);
