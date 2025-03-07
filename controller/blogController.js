@@ -1,6 +1,6 @@
 const blog = require("../model/blogSchema");
 const user = require("../model/registerSchema");
-
+const fs = require('fs');
 exports.renderAllBlogs = async(req,res)=>{
     const blogs = await blog.find();
     if(blogs){
@@ -50,6 +50,20 @@ exports.renderSingleBlog = async(req,res)=>{
 exports.deleteBlog = async(req,res)=>{
     try {
         const blogData = await blog.findByIdAndDelete(req.params.id);
+        if(!blogData){
+            return res.status(404).json({message:"blog not found"});
+        }
+        const oldImage = blogData.image;
+        fs.unlink('storage/'+oldImage,(e)=>{
+            if(e){
+                console.log('error in deleting old image',e);
+                
+            }
+            else{
+                console.log('blog deleted with old image');
+                
+            }
+        })
         return res.status(200).json({message:"blog deleted successfully.",blogData});
     } catch (error) {
         console.log(error);
