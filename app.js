@@ -16,7 +16,7 @@ const upload = multer({storage:storage});
 // Set view engine
 app.set('view engine', 'ejs');
 app.set('views', './views'); // Set the views directory
-
+app.use(express.static('./public/'));
 app.use(express.static('./storage/'));
 const userRoutes = require('./routes/userRoutes');
 const blogRoutes = require('./routes/blogRoutes');
