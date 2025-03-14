@@ -9,7 +9,7 @@ router.route('/register').post(userController.registerUser);
 router.route('/login').post(userController.loginUser);
 router.route('/test').get(isAuthenticated,isAdmin);
 router.route('/logout').post(userController.logout);
-
+router.route('/search').get(userController.search);
 //user apis
 router.route('/users').get(userController.renderAllUsers);
 router.route('/users/:id').get(userController.renderUser).put(userController.updateUser).delete(userController.deleteUser);
