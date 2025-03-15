@@ -122,3 +122,6 @@ exports.search =async(req,res)=>{
 exports.renderRegisterPage = (req,res)=>{
     res.render('register');
 }
+exports.renderLoginPage = (req,res)=>{
+    res.render('login');
+}

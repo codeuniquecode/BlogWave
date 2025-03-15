@@ -26,7 +26,7 @@ form{
     
 }
 
-#registerBtn{
+#registerBtn,#loginBtn{
     color: white;
     background-color: black;
     border: 2px solid white;
@@ -39,7 +39,7 @@ form{
     line-height: 1.25;
 
 }
-#registerBtn:hover{
+#registerBtn:hover,#loginBtn:hover{
     background-color: white;
     color: black;
     transition: 0.3s;
