@@ -1,0 +1,55 @@
+body{
+    background-color: black !important;
+}
+.register{
+    color: white;
+}
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+}
+form{
+    display: block;
+   margin: auto !important;
+    width: 100%;
+    max-width: 400px;
+    padding: 15px;
+    margin: 20px;
+    color: white;
+    background-color: black;
+    border-radius: 10px;
+    box-shadow: 1px 1px 25px white;
+    border: 2px solid white;
+    
+}
+
+#registerBtn{
+    color: white;
+    background-color: black;
+    border: 2px solid white;
+    border-radius: 10px;
+    padding: 10px;
+    /* margin: 10px; */
+    width: 100%;
+    cursor: pointer;
+    margin-top: 0.75rem;
+    line-height: 1.25;
+
+}
+#registerBtn:hover{
+    background-color: white;
+    color: black;
+    transition: 0.3s;
+}
+.forget>a{
+    color: white;
+}
+.forget>a:hover{
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}

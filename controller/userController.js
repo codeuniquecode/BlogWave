@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const blog = require('../model/blogSchema');
 exports.home = (req, res) => {
     res.render('home');
-    return res.status(200).json({ message: "home page here" });
+    // return res.status(200).json({ message: "home page here" });
 }
 exports.registerUser = async (req, res) => {
     // name,email,passowrd
@@ -117,4 +117,8 @@ exports.search =async(req,res)=>{
         return res.status(404).json({error:"Try using some different keywords."});
     }
     return res.status(200).json({results});
+}
+
+exports.renderRegisterPage = (req,res)=>{
+    res.render('register');
 }

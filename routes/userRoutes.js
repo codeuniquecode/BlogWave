@@ -5,7 +5,7 @@ const { isAuthenticated } = require('../middleware/isAuthenticated');
 const { isAdmin } = require('../middleware/isAdmin');
 
 router.route('/').get(userController.home);
-router.route('/register').post(userController.registerUser);
+router.route('/register').post(userController.registerUser).get(userController.renderRegisterPage);
 router.route('/login').post(userController.loginUser);
 router.route('/test').get(isAuthenticated,isAdmin);
 router.route('/logout').post(userController.logout);
