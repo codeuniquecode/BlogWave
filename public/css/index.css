@@ -51,6 +51,9 @@
       margin-top: 1rem;
       margin-left: 0rem;
    }
+   .form-control{
+      width: 80% !important;
+   }
   
 }
 
@@ -124,7 +127,7 @@
    /* border: 2px solid black;
     */
     opacity: 0.7;
-    width: 70% !important;
+    width: 35% !important;
 }
 .form-control:hover{
    opacity: 1;
@@ -137,6 +140,9 @@
    }
    #explore{
       margin-top: 0.5rem;
+   }
+   .form-control{
+      width: 80% !important;
    }
    
 }

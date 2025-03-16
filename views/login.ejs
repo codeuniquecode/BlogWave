@@ -13,14 +13,14 @@
     <main>
         <div class="container">
             <p class="fw-bold fs-2 text-center register">Login</p>
-            <form id="loginForm">
+            <form id="loginForm" action="/login" method="POST">
                 <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label fw-bold">Email</label>
-                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+                  <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" required>
                 </div>
                 <div class="mb-3">
                   <label for="exampleInputPassword1" class="form-label fw-bold">Password</label>
-                  <input type="password" class="form-control" id="password" minlength="8" required>
+                  <input type="password" class="form-control" id="password" name="password" minlength="8" required>
                 </div>
                 <div class="forget text-end">
                     <a href="/forgot" class="text-decoration-none">Forgot Password?</a>

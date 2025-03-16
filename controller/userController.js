@@ -10,7 +10,7 @@ exports.registerUser = async (req, res) => {
     // name,email,passowrd
     const { name, email, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 1);
-
+    
     const data = new user({
         name,
         password: hashedPassword,
@@ -18,7 +18,8 @@ exports.registerUser = async (req, res) => {
     });
     await data.save();
     if (data) {
-        return res.status(201).json({ message: "user registered successfully.", data });
+        res.redirect('/login');
+        // return res.status(201).json({ message: "user registered successfully.", data });
     }
     else {
         return res.status(404).json({ message: "error in registering user." });
@@ -39,6 +40,7 @@ exports.loginUser = async (req, res) => {
             res.cookie("token", token,{
                 maxAge:24*60*60*1000
             });
+            console.log('login success');
             return res.status(201).json({message:"login success"});
         }else{
             return res.status(404).json({ message:"invalid password" });
