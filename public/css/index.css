@@ -147,3 +147,16 @@
    
 }
 /* landing page over */
+
+/* card */
+.card{
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   border: none !important;
+} 
+.card-img-top{
+   height: 8rem;
+   object-fit: contain;
+    
+}

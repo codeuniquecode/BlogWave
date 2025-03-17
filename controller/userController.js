@@ -40,7 +40,7 @@ exports.loginUser = async (req, res) => {
             res.cookie("token", token,{
                 maxAge:24*60*60*1000
             });
-            console.log('login success');
+            // console.log('login success');
             return res.status(201).json({message:"login success"});
         }else{
             return res.status(404).json({ message:"invalid password" });
