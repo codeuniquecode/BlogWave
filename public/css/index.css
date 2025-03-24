@@ -160,3 +160,11 @@
    object-fit: contain;
     
 }
+
+.blogs > .row > .card > img {
+   max-width: 100%; /* Ensure image width adapts to its container */
+   height: 12rem;    /* Maintains aspect ratio */
+   object-fit: cover; 
+   object-position: center;
+ }
+ 
