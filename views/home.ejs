@@ -40,7 +40,7 @@
     <section class="landing">
       <div class="background-image container">
         <div class="hero text-center">
-          <h1 class="fw-bold fs-2  text">"Your thoughts, Your Stories, Your Waves!"</h1>
+          <h1 class="fw-bold fs-1  text">"Your thoughts, Your Stories, Your Waves!"</h1>
           <p class="fs-5 fw-bold text">"Write, Explore and Connect with the blogging community."</p>
           <div class="text-center search">
             <!-- <button class="btn fw-bold fs-5 " id="explore">Explore</button> -->
@@ -66,12 +66,13 @@
     <!-- features -->
     <section class="features text-center container">
       <div class="cards row text-center">
-        <p class="text-center fw-bold fs-3 mt-lg-3 mt-md-2 mt-sm-2">Features</p>
+        <p class="text-center fw-bold fs-3 mt-lg-3 mt-md-2 mt-sm-2">Features <i class="fa-solid fa-wrench"></i></p>
         <div class="card col-lg-3 col-md-6 col-sm-6 ">
           <img src="images/write.png" class="card-img-top" alt="">
           <div class="card-body">
             <div class="card-title text-center fw-bold">Write & Publish Easily</div>
             <p class="card-text text-center">Express yourself with our simple, distraction-free editor.</p>
+            <a href="/write" class="btn feature-btn">Start Writing <i class="fa-solid fa-pen-fancy"></i></a>
           </div>
         </div>
         <div class="card col-lg-3 col-md-6 col-sm-6">
@@ -79,13 +80,15 @@
           <div class="card-body">
             <div class="card-title text-center fw-bold">Discover & Explore</div>
             <p class="card-text text-center">Find blogs that match your interests, from tech to travel.</p>
+            <a href="/explore" class="btn feature-btn">Explore Blogs <i class="fa-solid fa-magnifying-glass"></i></a>
           </div>
         </div>
         <div class="card col-lg-3 col-md-6 col-sm-6">
           <img src="images/responsive.png" class="card-img-top" alt="">
           <div class="card-body">
             <div class="card-title text-center fw-bold"> Mobile-Friendly Experience</div>
-            <p class="card-text text-center">Read, write, and interact on the go with our fully responsive design.</p>
+            <p class="card-text text-center">Read and interact on the go with our fully responsive design.</p>
+            <a href="/write" class="btn feature-btn">Try on Mobile <i class="fa-solid fa-mobile-screen-button"></i></a>
           </div>
         </div>
         <div class="card col-lg-3 col-md-6 col-sm-6">
@@ -93,6 +96,7 @@
           <div class="card-body">
             <div class="card-title text-center fw-bold">Secure & Seamless Login</div>
             <p class="card-text text-center">Sign up quickly using Google OAuth or create an account.</p>
+            <a href="/register" class="btn feature-btn">Sign Up Now <i class="fa-solid fa-user-plus"></i></a>
           </div>
         </div>
       </div>
@@ -101,9 +105,9 @@
     <!-- features finished -->
 
     <!-- popular blogs -->
-    <section class="popular-blogs container">
+    <section class="popular-blogs container mt-md-2 mt-lg-3 mt-sm-1">
       <div class="blogs">
-        <p class="text-center fw-bold fs-3 mt-lg-3 mt-md-2 mt-sm-2">Popular Blogs</p>
+        <p class="text-center fw-bold fs-3 mt-lg-3 mt-md-2 mt-sm-2">Popular Blogs <i class="fa-solid fa-fire-flame-curved"></i></p>
         <div class="row">
           <div class="card col-lg-4 col-md-6 col-sm-6">
             <img src="images/tech.jpg" class="card-img-top" alt="">
@@ -153,9 +157,51 @@
 
     </section>
   </main>
+
+  <!-- main body sidyo -->
+  <footer class="footer mt-md-2 mt-lg-3 mt-sm-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center  col-sm-12 col-lg-12">
+                <div class="container  py-4">
+                    <div class="row text-center">
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-12" data-aos="fade-down">
+                            <h3 class="custom-color">Contact Information</h3>
+                                Address - Gwarko, Lalitpur <br>
+                                9883055292 <br>
+                                <a href="#" class="">blogwave@gmail.com</a>
+                            </p>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-12" data-aos="fade-up">
+                            <h3 class="text-center custom-color">Links</h3>
+                            <ul class="list-unstyled  fs-6 text-center">
+                                <li><a href="#" class="text-white text-decoration-none">Terms of Service</a></li>
+                                <li><a href="#" class="text-white text-decoration-none">Privacy Policy</a></li>
+                                <li><a href="#" class="text-white text-decoration-none">Careers</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-12" data-aos="fade-down">
+                            <h3 class="text-center custom-color">Social Media</h3>
+                            <ul class=" list-unstyled fs-6 text-center">
+                                <li><a href="#" class="text-white text-decoration-none"><i class="fab fa-facebook"></i> Facebook</a></li>
+                                <li><a href="#" class="text-white text-decoration-none"><i class="fab fa-twitter"></i> Twitter</a></li>
+                                <li><a href="#" class="text-white text-decoration-none"><i class="fab fa-instagram"></i> Instagram</a></li>
+                                <li><a href="#" class="text-white text-decoration-none"><i class="fab fa-linkedin"></i> Linkedin</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center last">
+                    
+                <p class="subtext">© 2025 BlogWave. All rights reserved.</p>
+                </div>
+
+</footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/2c8d038c04.js" crossorigin="anonymous"></script>
+
 </body>
 
 </html>

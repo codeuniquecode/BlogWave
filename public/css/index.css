@@ -168,3 +168,30 @@
    object-position: center;
  }
  
+ /* feature btn */
+ .feature-btn{
+   color: rgb(255, 255, 255) !important;
+   font-weight: bold !important;
+   /* border-radius: 40px; */
+   background-color: rgb(48, 42, 42) !important;
+   border: 1px solid rgb(255, 255, 255) !important;
+   
+   border-radius: 40px !important;
+   padding: 2px;
+ }
+ .feature-btn:hover{
+   color: black !important;
+   background-color: white !important;
+   transition: 0.4s;
+   scale: 1.2;
+   border: 1px solid black !important;
+ }
+ footer{
+   background-color: black;
+   color: white !important;
+   padding: 0.5rem;
+ }
+ footer ul>li:hover{
+   scale: 1.2;
+   transition: 0.4s;
+ }
