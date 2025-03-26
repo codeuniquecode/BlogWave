@@ -64,8 +64,8 @@
     <!-- landing page over -->
 
     <!-- features -->
-    <section class="features text-center container">
-      <div class="cards row text-center">
+    <section class="custom-margin text-center container ">
+      <div class="features cards row text-center">
         <p class="text-center fw-bold fs-3 mt-lg-3 mt-md-2 mt-sm-2">Features <i class="fa-solid fa-wrench"></i></p>
         <div class="card col-lg-3 col-md-6 col-sm-6 ">
           <img src="images/write.png" class="card-img-top" alt="">
@@ -88,7 +88,7 @@
           <div class="card-body">
             <div class="card-title text-center fw-bold"> Mobile-Friendly Experience</div>
             <p class="card-text text-center">Read and interact on the go with our fully responsive design.</p>
-            <a href="/write" class="btn feature-btn">Try on Mobile <i class="fa-solid fa-mobile-screen-button"></i></a>
+            <a href="" class="btn feature-btn" onclick="mobileMode()">Try on Mobile <i class="fa-solid fa-mobile-screen-button"></i></a>
           </div>
         </div>
         <div class="card col-lg-3 col-md-6 col-sm-6">
@@ -105,7 +105,7 @@
     <!-- features finished -->
 
     <!-- popular blogs -->
-    <section class="popular-blogs container mt-md-2 mt-lg-3 mt-sm-1">
+    <section class="custom-margin popular-blogs container mt-md-2 mt-lg-3 mt-sm-1">
       <div class="blogs">
         <p class="text-center fw-bold fs-3 mt-lg-3 mt-md-2 mt-sm-2">Popular Blogs <i class="fa-solid fa-fire-flame-curved"></i></p>
         <div class="row">
@@ -113,42 +113,48 @@
             <img src="images/tech.jpg" class="card-img-top" alt="">
             <div class="card-body">
               <div class="card-title text-center fw-bold">Tech</div>
-              <p class="card-text text-center">Total- 0</p>
+              <p class="card-text text-center">By [Author Name] | Date: 2025-03-26
+                <br>❤️ Total Likes: 10</p>
             </div>
           </div>
           <div class="card col-lg-4 col-md-6 col-sm-6">
             <img src="images/food.jpg" class="card-img-top" alt="">
             <div class="card-body">
               <div class="card-title text-center fw-bold">Food</div>
-              <p class="card-text text-center">Total- 0</p>
+              <p class="card-text text-center">By [Author Name] | Date: 2025-03-26
+                <br>❤️ Total Likes: 10</p></p>
             </div>
           </div>
           <div class="card col-lg-4 col-md-6 col-sm-6">
             <img src="images/book.jpg" class="card-img-top" alt="">
             <div class="card-body">
               <div class="card-title text-center fw-bold">Books</div>
-              <p class="card-text text-center">Total- 0</p>
+              <p class="card-text text-center">By [Author Name] | Date: 2025-03-26
+                <br>❤️ Total Likes: 10</p></p>
             </div>
           </div>
           <div class="card col-lg-4 col-md-6 col-sm-6">
             <img src="images/travel.jpg" class="card-img-top" alt="">
             <div class="card-body">
               <div class="card-title text-center fw-bold">Travel</div>
-              <p class="card-text text-center">Total- 0</p>
+              <p class="card-text text-center">By [Author Name] | Date: 2025-03-26
+                <br>❤️ Total Likes: 10</p></p>
             </div>
           </div>
           <div class="card col-lg-4 col-md-6 col-sm-6">
             <img src="images/health.jpg" class="card-img-top" alt="">
             <div class="card-body">
               <div class="card-title text-center fw-bold">Health</div>
-              <p class="card-text text-center">Total- 0</p>
+              <p class="card-text text-center">By [Author Name] | Date: 2025-03-26
+                <br>❤️ Total Likes: 10</p></p>
             </div>
           </div>
           <div class="card col-lg-4 col-md-6 col-sm-6">
             <img src="images/stock.jpg" class="card-img-top" alt="">
             <div class="card-body">
               <div class="card-title text-center fw-bold">Stocks</div>
-              <p class="card-text text-center">Total- 0</p>
+              <p class="card-text text-center">By [Author Name] | Date: 2025-03-26
+                <br>❤️ Total Likes: 10</p></p>
             </div>
           </div>
            
@@ -159,7 +165,7 @@
   </main>
 
   <!-- main body sidyo -->
-  <footer class="footer mt-md-2 mt-lg-3 mt-sm-1">
+  <footer class="custom-margin  mt-md-2 mt-lg-3 mt-sm-1">
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center  col-sm-12 col-lg-12">
@@ -169,7 +175,7 @@
                             <h3 class="custom-color">Contact Information</h3>
                                 Address - Gwarko, Lalitpur <br>
                                 9883055292 <br>
-                                <a href="#" class="">blogwave@gmail.com</a>
+                                <a href="mailto:blogwave@gmail.com" class="">blogwave@gmail.com</a>
                             </p>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-6 col-12" data-aos="fade-up">
@@ -201,7 +207,11 @@
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/2c8d038c04.js" crossorigin="anonymous"></script>
-
+<script>
+  function mobileMode() {
+    window.open("http://localhost:3000", "_blank", "width=400,height=650,scrollbars=yes");
+  }
+</script>
 </body>
 
 </html>
