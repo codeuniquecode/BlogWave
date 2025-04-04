@@ -10,7 +10,12 @@ router.route('/login').post(userController.loginUser).get(userController.renderL
 router.route('/test').get(isAuthenticated,isAdmin);
 router.route('/logout').post(userController.logout);
 router.route('/search').get(userController.search);
+
 //user apis
 router.route('/users').get(userController.renderAllUsers);
 router.route('/users/:id').get(userController.renderUser).put(userController.updateUser).delete(userController.deleteUser);
+
+
+//post apis
+router.route('/write').get(userController.renderWriteBlog);
 module.exports = router;

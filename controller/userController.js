@@ -127,3 +127,6 @@ exports.renderRegisterPage = (req,res)=>{
 exports.renderLoginPage = (req,res)=>{
     res.render('login');
 }
+exports.renderWriteBlog =(req,res)=>{
+    res.render('writeBlog');
+}
