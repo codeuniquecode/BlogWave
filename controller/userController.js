@@ -8,7 +8,14 @@ exports.home = (req, res) => {
 }
 exports.registerUser = async (req, res) => {
     // name,email,passowrd
+   
     const { name, email, password } = req.body;
+    const userExists = await user.findOne({
+        email
+    });
+    if(userExists){
+        return res.status(404).json({message:"user with this email already exists"});
+    }
     const hashedPassword = await bcrypt.hash(password, 1);
     
     const data = new user({
@@ -127,6 +134,4 @@ exports.renderRegisterPage = (req,res)=>{
 exports.renderLoginPage = (req,res)=>{
     res.render('login');
 }
-exports.renderWriteBlog =(req,res)=>{
-    res.render('writeBlog');
-}
+

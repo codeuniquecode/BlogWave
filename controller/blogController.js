@@ -11,8 +11,12 @@ exports.renderAllBlogs = async(req,res)=>{
     return res.status(404).json({ error: "Blogs not found" });
     }
 }
+exports.renderWriteBlog =(req,res)=>{
+    res.render('writeBlog');
+}
 exports.postBlog = async(req,res)=>{
     // return res.status(404).json({ error: req.user });
+    console.log(req.user);
     const validAuthor = await user.findOne({
         _id:req.user
     });
@@ -20,11 +24,16 @@ exports.postBlog = async(req,res)=>{
         return res.status(404).json({ error: "Invalid Author" });
     }
     // return res.status(404).json({ error: {validAuthor} });
-    const {title,description} = req.body;
+    const {title,description,category} = req.body;
+    // console.log(req.body);
+    // console.log('-----------');
+    // console.log(req.file);
+    // return;
     const newBlog = new blog({
         title,
         description,
         image:req.file.filename,
+        category,
         author:req.user
     });
     await newBlog.save();

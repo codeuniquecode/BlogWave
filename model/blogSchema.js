@@ -20,6 +20,11 @@ const blogSchema = mongoose.Schema({
         type:String,
         required:true
     },
+    category:{
+        type: String,
+        required: true,
+        enum: ["Food", "Technology", "Cars", "Lifestyle", "Books", "Stocks"]
+    },
     date:{
         type:String,
         default:moment(date).format('MMMM Do YYYY, h:mm:ss a')

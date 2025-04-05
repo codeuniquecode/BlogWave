@@ -19,6 +19,7 @@ exports.isAuthenticated = async (req,res,next)=>{
     else{
         //  res.status(200).json({ error: decryptedResult });
         req.user = decryptedResult.id;
+        console.log('successfully decryted id-',req.user);
         next();
     }
    
