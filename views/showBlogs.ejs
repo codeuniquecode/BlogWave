@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogs || BlogWave</title>
+</head>
+<body>
+    <!-- show all blogs  -->
+    <nav>
+        <%- include('./partials/redirect.ejs') %>
+    
+      </nav>
+      <h1>test
+
+      </h1>
+    <main>
+        <%if (blogs.length > 0) {%>
+            <h1 class="text-center">Blogs</h1>
+
+            <div class="row">
+                <% blogs.forEach((blog) => { %>
+                    <div class="card col-lg-4 col-md-6 col-sm-6">
+                      <img src="http://localhost:3000/<%-blog.image%>" class="card-img-top" alt="" style="height: 200px; width: 100%; object-fit: cover;">
+                      <div class="card-body">
+                        <div class="card-title text-center fw-bold"><%- blog.title %></div>
+                        <p class="card-text text-center">By <%- blog.author %> | Date: <%- blog.date %></p>
+                        <p class="card-text text-center">Description: <%- blog.description %></p>
+                        <br>❤️ Total Likes: 10
+                      </div>
+                    </div>
+                  <% }); %>
+                  
+        <% } else { %>
+            <h1 class="text-center">No Blogs Found</h1>
+        <% } %>
+    </main>
+</body>
+</html>

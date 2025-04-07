@@ -4,7 +4,8 @@ const fs = require('fs');
 exports.renderAllBlogs = async(req,res)=>{
     const blogs = await blog.find();
     if(blogs){
-        return res.status(200).json({ blogs });
+        res.render('showBlogs',{blogs});
+        // return res.status(200).json({ blogs });
     }
     else{
         
