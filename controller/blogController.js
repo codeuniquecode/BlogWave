@@ -2,9 +2,11 @@ const blog = require("../model/blogSchema");
 const user = require("../model/registerSchema");
 const fs = require('fs');
 exports.renderAllBlogs = async(req,res)=>{
-    const blogs = await blog.find();
+    // const blogs = await blog.find();
+    const blogs = await blog.find().populate('author', 'name');
     if(blogs){
         res.render('showBlogs',{blogs});
+
         // return res.status(200).json({ blogs });
     }
     else{
