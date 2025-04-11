@@ -13,5 +13,5 @@ router.route('/blogs/:id').get(blogController.renderSingleBlog).delete(blogContr
 router.route('/myBlogs').get(isAuthenticated,blogController.renderMyBlog);
 
 router.route('/write').get(blogController.renderWriteBlog).post(isAuthenticated,upload.single('image'),blogController.postBlog);
-
+router.route('/search').get(blogController.search);
 module.exports = router;

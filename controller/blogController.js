@@ -109,3 +109,16 @@ exports.updateBlog = async (req,res)=>{
         return res.status(404).json({ error: "error in updating blog." });
     }
 }
+exports.search =async(req,res)=>{
+    const searchKeyword = req.query.search;
+    if(!searchKeyword){
+        return res.status(404).json({error:"no search keyword"});
+    }
+    const results = await blog.find({
+        title: { $regex: searchKeyword, $options: "i" } // Case-insensitive search
+    });
+    if(results.length ===0){
+        return res.status(404).json({error:"Try using some different keywords."});
+    }
+    res.render('showBlogs',{blogs:results})
+}
