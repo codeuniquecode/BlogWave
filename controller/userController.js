@@ -114,18 +114,21 @@ exports.deleteUser = async(req,res)=>{
         return res.status(404).json({error:"error in deleting user data"});
     }
 }
-exports.search =async(req,res)=>{
-    const searchKeyword = req.query.search;
-    if(!searchKeyword){
+exports.searchBlogs =async(req,res)=>{
+    const {keyword} = req.body;
+    // console.log(keyword);
+    // return;
+    // const searchKeyword = req.query.search;
+    if(!keyword){
         return res.status(404).json({error:"no search keyword"});
     }
     const results = await blog.find({
-        title: { $regex: searchKeyword, $options: "i" } // Case-insensitive search
+        title: { $regex: keyword, $options: "i" } // Case-insensitive search
     });
     if(results.length ===0){
         return res.status(404).json({error:"Try using some different keywords."});
     }
-    return res.status(200).json({results});
+    res.render('showBlogs',{blogs:results});
 }
 
 exports.renderRegisterPage = (req,res)=>{
