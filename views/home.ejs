@@ -44,9 +44,9 @@
           <p class="fs-5 fw-bold text">"Write, Explore and Connect with the blogging community."</p>
           <div class="text-center search">
             <!-- <button class="btn fw-bold fs-5 " id="explore">Explore</button> -->
-            <form class="d-flex justify-content-center">
-              <input class="form-control me-2" list="datalistOptions" type="search" placeholder="Search by title"
-                aria-label="Search">
+            <form class="d-flex justify-content-center" action="/searchBlogs" method="post">
+              <input class="form-control me-2" name="keyword" list="datalistOptions" type="search" placeholder="Search by title"
+                aria-label="Search" required>
               <datalist id="datalistOptions">
                 <option value="Technology">
                 <option value="Cars">
