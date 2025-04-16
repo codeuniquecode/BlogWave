@@ -27,6 +27,7 @@
    color: black !important;
    background-color: white;
    transition: 0.4s;
+   scale: 1.2;
 }
 
 #login{
@@ -42,6 +43,7 @@
    color: white !important;
    background-color: black;
    transition: 0.4s;
+   scale: 1.2;
 }
 @media screen and (max-width: 992px) {
    #started{

@@ -16,6 +16,12 @@
   </nav>
     <main>
         <div class="container">
+          <%if(typeof message !== 'undefined' && message){%>
+            <div class="alert alert-danger alert-dismissible fade show text-dark bg-light" role="alert">
+              <strong><%= message %></strong>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          <%}%>
             <p class="fw-bold fs-2 text-center register">Login</p>
             <form id="loginForm" action="/login" method="POST">
                 <div class="mb-3">

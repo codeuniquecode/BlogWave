@@ -45,17 +45,12 @@ form{
     transition: 0.3s;
 }
 .forget:hover{
-    font-weight: bold;
+    /* font-weight: bold; */
     scale: 1.05 !important;
     transition: 0.3s !important;
 }
 .forget>a{
-    color: white;
-}
-.forget>a:hover{
-    color: white;
-    text-decoration: none;
-
+    color: white !important;
 }
 @media screen and (max-width: 468px){
     form{

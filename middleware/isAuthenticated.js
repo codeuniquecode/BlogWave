@@ -6,7 +6,9 @@ const { decrypt } = require('dotenv');
 exports.isAuthenticated = async (req,res,next)=>{
     const token = req.cookies.token;
     if(!token){
-        return res.status(404).json({ error: "Token not found" });
+        // res.status(404).json({ error: "Token not found" });
+        res.render('login',{message:'Please Login First!!!'});
+        return;
     }
     const decryptedResult = await promisify (jwt.verify)(token,process.env.SECRETKEY);
     const validUser = await user.findOne({
