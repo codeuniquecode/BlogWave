@@ -114,22 +114,29 @@ exports.deleteUser = async(req,res)=>{
         return res.status(404).json({error:"error in deleting user data"});
     }
 }
-exports.searchBlogs =async(req,res)=>{
-    const {keyword} = req.body;
-    // console.log(keyword);
-    // return;
-    // const searchKeyword = req.query.search;
-    if(!keyword){
-        return res.status(404).json({error:"no search keyword"});
+exports.searchBlogs = async (req, res) => {
+    const { keyword } = req.body;
+
+    if (!keyword) {
+        return res.status(404).json({ error: "No search keyword provided." });
     }
-    const results = await blog.find({
+    let results = await blog.find({
         title: { $regex: keyword, $options: "i" } // Case-insensitive search
     });
-    if(results.length ===0){
-        return res.status(404).json({error:"Try using some different keywords."});
+
+    if (results.length === 0) {
+        results = await blog.find({
+            category: { $regex: keyword, $options: "i" }
+        });
+
+        if (results.length === 0) {
+            return res.status(404).json({ error: "No blogs found for the given keyword/category." });
+        }
     }
-    res.render('showBlogs',{blogs:results});
-}
+
+    res.render('showBlogs', { blogs: results });
+};
+
 
 exports.renderRegisterPage = (req,res)=>{
     res.render('register');
