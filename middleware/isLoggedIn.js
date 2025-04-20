@@ -20,6 +20,7 @@ exports.isLoggedIn = async (req,res,next)=>{
         res.locals.currentUser = decryptedResult;
     
         res.locals.userName= validUser.name;
+        req.userId = decryptedResult.id;
         // console.log(decryptedResult);
         // console.log(`------ ${decryptedResult.name}`);
         console.log(`the username is -  ${validUser.name}`);

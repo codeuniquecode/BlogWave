@@ -12,10 +12,13 @@ router.route('/test').get(isAuthenticated,isAdmin);
 router.route('/logout').get(userController.logout);
 router.route('/searchBlogs').post(userController.searchBlogs);
 
-//user apis
+//admin---user apis
 router.route('/users').get(userController.renderAllUsers);
 router.route('/users/:id').get(userController.renderUser).put(userController.updateUser).delete(userController.deleteUser);
 
+
+// user apis
+router.route('/editProfile').get(isLoggedIn,userController.renderEditProfile).post(isLoggedIn,userController.editProfile);
 
 //post apis
 module.exports = router;

@@ -125,6 +125,7 @@
         const title = blog.textContent.toLowerCase();
   
         if (title.includes(keyword)) {
+          message.textContent = "blogs";
           card.style.display = 'block';
         } else {
           card.style.display = 'none';

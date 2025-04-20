@@ -2,6 +2,7 @@ const user = require('../model/registerSchema');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const blog = require('../model/blogSchema');
+const {isLoggedIn} = require('../middleware/isLoggedIn');
 exports.home = (req, res) => {
     res.render('home');
     // return res.status(200).json({ message: "home page here" });
@@ -59,7 +60,8 @@ exports.loginUser = async (req, res) => {
 }
 exports.logout = (req, res) => {
     res.clearCookie('token');
-   return res.status(200).json({ message: "Logged out successfully." });
+    res.redirect('/');
+//    return res.status(200).json({ message: "Logged out successfully." });
 };
 exports.renderAllUsers = async (req,res)=>{
     try{
@@ -141,7 +143,45 @@ exports.searchBlogs = async (req, res) => {
 exports.renderRegisterPage = (req,res)=>{
     res.render('register');
 }
-exports.renderLoginPage = (req,res)=>{
+exports.renderLoginPage =  (req,res)=>{
     res.render('login');
+}
+exports.renderEditProfile = async(req,res)=>{
+    const userData = await user.findOne({
+        _id:req.userId
+    });
+    if(!userData){
+        res.render('login',{message:"user not found! login first"});
+        return;
+    }
+    
+    res.render('editProfile',{userData});
+}
+exports.editProfile =async(req,res)=>{
+
+try {
+    // console.log(`${req.userId} and ${name}  and ${email}`);
+    // return;
+    const updateInfo = await user.findByIdAndUpdate(req.userId, { name: req.body.name, email: req.body.email });
+    
+    console.log(updateInfo);
+    if(!updateInfo){
+        return res.status(404).json({error:"error in updating data"});
+    }
+    
+      // Create a new token with updated information
+      const token = jwt.sign({
+          _id: updateInfo.userId
+      }, process.env.SECRETKEY, { expiresIn: '30d' });
+
+      // Set the new token in the response cookies
+      res.cookie('token', token, { httpOnly: true });
+
+      // Respond to the client
+      return res.redirect('/login');
+} catch (error) {
+    console.log(error);
+}
+    
 }
 
