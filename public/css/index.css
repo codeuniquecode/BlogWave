@@ -39,7 +39,7 @@
    width: 7rem;
    margin-left: 2rem;
 }
-#login:hover, #explore:hover{
+#login:hover, #explore:hover, .users:hover{
    color: white !important;
    background-color: black;
    transition: 0.4s;
@@ -56,7 +56,10 @@
    .form-control{
       width: 80% !important;
    }
-  
+  .users{
+   margin:0rem !important;
+   padding: 0rem !important;
+  }
 }
 
 /* navbar ends */
@@ -158,6 +161,9 @@
    }
    .custom-footer,.link{
       margin-top: 1rem !important;
+  }
+  .dropdown>button{
+   font-size:1rem !important;
   }
    
 }
