@@ -163,8 +163,6 @@ try {
     // console.log(`${req.userId} and ${name}  and ${email}`);
     // return;
     const updateInfo = await user.findByIdAndUpdate(req.userId, { name: req.body.name, email: req.body.email });
-    
-    console.log(updateInfo);
     if(!updateInfo){
         return res.status(404).json({error:"error in updating data"});
     }
@@ -178,7 +176,9 @@ try {
       res.cookie('token', token, { httpOnly: true });
 
       // Respond to the client
-      return res.redirect('/login');
+    //   return res.redirect('/login');
+    return res.render('login',{message:"Profile Updated Successfully ! Pleasre re-login"})
+
 } catch (error) {
     console.log(error);
 }
