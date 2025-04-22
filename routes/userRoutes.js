@@ -19,6 +19,6 @@ router.route('/users/:id').get(userController.renderUser).put(userController.upd
 
 // user apis
 router.route('/editProfile').get(isLoggedIn,userController.renderEditProfile).post(isLoggedIn,userController.editProfile);
-
+router.route('/changePassword').get(userController.renderChangePassword).post(isLoggedIn,userController.changePassword);
 //post apis
 module.exports = router;
