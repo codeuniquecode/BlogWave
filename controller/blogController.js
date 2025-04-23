@@ -65,7 +65,9 @@ exports.renderMyBlog = async(req,res)=>{
         if(!blogData){
             return res.status(404).json({message:"blog not found"});
         }
-        return res.status(200).json({blogData});
+        // return res.status(200).json({blogData});
+        res.render('showBlogs',{blogs:blogData});
+        return;
 
     }
     catch(error){
