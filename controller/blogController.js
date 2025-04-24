@@ -1,3 +1,4 @@
+const path = require("path");
 const blog = require("../model/blogSchema");
 const user = require("../model/registerSchema");
 const fs = require('fs');
@@ -5,7 +6,7 @@ exports.renderAllBlogs = async(req,res)=>{
     // const blogs = await blog.find();
     const blogs = await blog.find().populate('author', 'name');
     if(blogs){
-        res.render('showBlogs',{blogs});
+        res.render('showBlogs',{blogs,userId:req.userId});
 
         // return res.status(200).json({ blogs });
     }
@@ -67,7 +68,8 @@ exports.renderMyBlog = async(req,res)=>{
             return res.status(404).json({message:"blog not found"});
         }
         // return res.status(200).json({blogData});
-        res.render('showBlogs',{blogs:blogData});
+        
+        res.render('showBlogs',{blogs:blogData, userId: req.userId});
         return;
 
     }
@@ -99,19 +101,46 @@ exports.deleteBlog = async(req,res)=>{
         return res.status(404).json({ error: "error in deleting blog" });
     }
 }
-exports.updateBlog = async (req,res)=>{
+exports.updateBlog = async (req, res) => {
     try {
-        const blogData = await blog.findByIdAndUpdate(req.params.id,req.body);
-        if(!blogData){
-            return res.status(404).json({message:"blog not found"});
+        const blogId = req.params.id;
+        const existingBlog = await blog.findById(blogId);
+
+        if (!existingBlog) {
+            return res.status(404).json({ message: "Blog not found" });
         }
-        return res.status(201).json({message:"blog updated successfylly",blogData});
+
+        // Prepare updated fields
+        const updateData = {
+            title: req.body.title,
+            description: req.body.description,
+            category: req.body.category,
+        };
+
+        // Handle image update and delete old one
+        if (req.file) {
+            const oldImagePath = path.join(__dirname, "../public/uploads", existingBlog.image);
+            
+            // Delete old image if it exists
+            if (fs.existsSync(oldImagePath)) {
+                fs.unlinkSync(oldImagePath);
+            }
+
+            updateData.image = req.file.filename; // store new image filename
+        }
+
+        const updatedBlog = await blog.findByIdAndUpdate(blogId, updateData, {
+            new: true,
+            runValidators: true,
+        });
+
+        return res.status(200).json({ message: "Blog updated successfully", updatedBlog });
 
     } catch (error) {
-        console.log(error);
-        return res.status(404).json({ error: "error in updating blog." });
+        console.error(error);
+        return res.status(500).json({ error: "Error in updating blog." });
     }
-}
+};
 exports.search =async(req,res)=>{
     const searchKeyword = req.query.search;
     if(!searchKeyword){
@@ -124,4 +153,15 @@ exports.search =async(req,res)=>{
         return res.status(404).json({error:"Try using some different keywords."});
     }
     res.render('showBlogs',{blogs:results})
+}
+exports.editBlog = async (req,res)=>{
+   
+    const validBlog = await blog.find({_id:req.params.id});
+   
+    if(!validBlog){
+        return res.status(404).json({error:"No blogs found"});
+    }
+    
+    const blogData = validBlog[0];
+    res.render('editBlog',{blogData});
 }

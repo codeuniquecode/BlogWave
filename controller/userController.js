@@ -136,7 +136,7 @@ exports.searchBlogs = async (req, res) => {
         }
     }
 
-    res.render('showBlogs', { blogs: results });
+    res.render('showBlogs', { blogs: results , userId : req.userId});
 };
 
 

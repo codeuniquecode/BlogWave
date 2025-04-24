@@ -9,6 +9,7 @@ exports.isLoggedIn = async (req,res,next)=>{
     if(!token){
         res.locals.currentUser = null;
         res.locals.userName = null;
+        req.userId =null;
         next();
         return;
     }
