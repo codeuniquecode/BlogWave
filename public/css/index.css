@@ -167,6 +167,10 @@
   }
    
 }
+  .bg-black {
+    background-color: black !important;
+  }
+
 /* landing page over */
 
 /* card */

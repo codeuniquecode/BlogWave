@@ -85,21 +85,24 @@
       <div class="row">
         <% blogs.forEach((blog) => { %>
           <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+            <a href="/blogs/<%-blog._id%>"">
             <div class="card h-100 shadow">
               <img
                 src="http://localhost:3000/<%- blog.image %>"
                 class="card-img-top"
                 alt="blog image"
                 style="height: 300px; object-fit: cover;"
+                href="/blogs/<%-blog._id%>"
               />
               <div class="card-body">
-                <h5 class="card-title text-center fw-bold title"><%- blog.title %></h5>
+                <h5 class="card-title text-center fw-bold title"><a class="text-black text-decoration-none" href="/blogs/<%-blog._id%>"><%- blog.title %></a></h5>
                 <p class="card-text text-center">Author: <b><%= blog.author ? blog.author.name : 'Unknown Author' %> </b>  | Date: <%- blog.date %></p>
                 <!-- <p class="card-text text-center">Description: <%- blog.description %></p> -->
                 <p class="text-center">❤️ Total Likes: 10</p>
               </div>
             </div>
           </div>
+        </a>
         <% }); %>
       </div>
 

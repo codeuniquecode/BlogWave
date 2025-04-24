@@ -65,4 +65,6 @@ form{
     color: white !important;
     font-weight: bolder !important;
 }
-
+.bg-black {
+    background-color: black !important;
+  }

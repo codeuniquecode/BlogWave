@@ -54,7 +54,8 @@ exports.renderSingleBlog = async(req,res)=>{
     if(!blogData){
         return res.status(404).json({message:"blog not found"});
     }
-    return res.status(200).json({message:"blog found.",blogData});
+    // return res.status(200).json({message:"blog found.",blogs:blogData});
+    res.render('singleBlog.ejs',{blog:blogData});
    } catch (error) {
     return res.status(404).json({message:"error in finding blog-invalid id", error})
    }

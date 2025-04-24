@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,9 +6,9 @@
     <title>Document</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg  ">
+    <nav class="navbar navbar-expand-lg bg-black"> 
         <div class="container">
-          <a class="navbar-brand fw-bold fs-3" href="/"><i class="fa-solid fa-arrow-left"></i></a>
+          <a class="navbar-brand fw-bold fs-3 text-light" id="goBack" href="#" onclick="window.history.back()"><i class="fa-solid fa-arrow-left"></i></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -17,5 +17,23 @@
       </nav>
       
     <script src="https://kit.fontawesome.com/2c8d038c04.js" crossorigin="anonymous"></script>
+    <script>
+        function goBack() {
+            
+        }
+    </script>
 </body>
-</html>
+</html> -->
+<nav class="navbar navbar-expand-lg bg-black navbar-dark">
+  <div class="container">
+    <a class="navbar-brand fw-bold fs-3 text-light" href="#" onclick="window.history.back()">
+      <i class="fa-solid fa-arrow-left"></i>
+    </a>
+    <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" disabled>
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
+
+<script src="https://kit.fontawesome.com/2c8d038c04.js" crossorigin="anonymous"></script>
