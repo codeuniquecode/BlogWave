@@ -165,3 +165,13 @@ exports.editBlog = async (req,res)=>{
     const blogData = validBlog[0];
     res.render('editBlog',{blogData});
 }
+exports.getBlogsByCategory = async (req, res) => {
+    const category = req.params.category;
+    try {
+      const blogs = await blog.find({ category }).populate('author', 'name');
+      res.render('showBlogs', { blogs,userId: req.userId });
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Server Error');
+    }
+  };

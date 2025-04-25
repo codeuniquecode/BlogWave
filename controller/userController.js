@@ -3,9 +3,28 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const blog = require('../model/blogSchema');
 const {isLoggedIn} = require('../middleware/isLoggedIn');
-exports.home = (req, res) => {
-    res.render('home');
-    // return res.status(200).json({ message: "home page here" });
+exports.home = async(req, res) => {
+    try {
+        const categoryCounts = await blog.aggregate([
+          {
+            $group: {
+              _id: '$category',
+              count: { $sum: 1 }
+            }
+          }
+        ]);
+    
+        // convert array to object for easy EJS access
+        const counts = {};
+        categoryCounts.forEach(cat => {
+          counts[cat._id.toLowerCase()] = cat.count;
+        });
+    
+        res.render('home', { counts }); // pass it to EJS
+      } catch (error) {
+        console.error(error);
+        res.status(500).send('Server error');
+      }
 }
 exports.registerUser = async (req, res) => {
     // name,email,passowrd

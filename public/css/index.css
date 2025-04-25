@@ -185,6 +185,10 @@
    object-fit: contain;
     
 }
+.card-img-top:hover{
+   transform: scale(1.1);
+   transition: 0.5s;
+}
 
 .blogs > .row > .card > img {
    max-width: 100%; /* Ensure image width adapts to its container */

@@ -12,7 +12,7 @@ router.route('/blogs').get(isLoggedIn,blogController.renderAllBlogs).post(isAuth
 router.route('/blogs/:id').get(isLoggedIn,blogController.renderSingleBlog).delete(isAuthenticated,blogController.deleteBlog);
 router.route('/editBlog/:id').get(isLoggedIn,blogController.editBlog).put(isAuthenticated,upload.single('image'),blogController.updateBlog)
 router.route('/myBlogs').get(isAuthenticated,isLoggedIn,blogController.renderMyBlog);
-
+router.route('/blogs/category/:category').get(isLoggedIn,blogController.getBlogsByCategory);
 router.route('/write').get(blogController.renderWriteBlog).post(isAuthenticated,upload.single('image'),blogController.postBlog);
 router.route('/search').get(blogController.search);
 module.exports = router;

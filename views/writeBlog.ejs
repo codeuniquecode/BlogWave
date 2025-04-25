@@ -107,7 +107,7 @@
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label fw-bold">Description <span id="descriptionCount"></span> </label>
 
-                    <textarea class="form-control" id="description" maxlength="1500" name="description" rows="4"
+                    <textarea class="form-control" id="description" maxlength="2500" name="description" rows="4"
                         placeholder="Description here" required></textarea>
                 </div>
                 <div class="mb-3">
@@ -140,7 +140,7 @@
         crossorigin="anonymous"></script>
         <script>
             const description = document.getElementById('description');
-            const maxLength = 1500; // Maximum length for the description
+            const maxLength = 2500; // Maximum length for the description
             description.addEventListener('input', () => {
                 const currentLength = description.value.length;
                 const remainingLength = maxLength - currentLength;

@@ -105,7 +105,7 @@
                   </b> |
                   Date: <%- blog.date %>
                 </p>
-                <p class="text-center">❤️ Total Likes: 10</p>
+                <!-- <p class="text-center">❤️ Total Likes: 10</p> -->
                 <% if (userId && blog.author && blog.author._id && blog.author._id.toString()===userId.toString()) { %>
                   <p class="text-center">
                     <a href="/editBlog/<%= blog._id %>" class="btn btn-primary">

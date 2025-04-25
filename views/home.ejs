@@ -141,67 +141,62 @@
     <!-- popular blogs -->
     <section class="custom-margin popular-blogs container mt-md-2 mt-lg-3 mt-sm-1">
       <div class="blogs">
-        <p class="text-center fw-bold fs-3 mt-lg-3 mt-md-2 mt-sm-2">Popular Blogs <i
+        <p class="text-center fw-bold fs-3 mt-lg-3 mt-md-2 mt-sm-2">Popular Categories <i
             class="fa-solid fa-fire-flame-curved"></i></p>
         <div class="row">
           <div class="card col-lg-4 col-md-6 col-sm-6">
-            <img src="images/tech.jpg" class="card-img-top" alt="">
-            <div class="card-body">
-              <div class="card-title text-center fw-bold">Tech</div>
-              <p class="card-text text-center">By [Author Name] | Date: 2025-03-26
-                <br>❤️ Total Likes: 10
-              </p>
-            </div>
+            <a href="/blogs/category/Technology" class="text-decoration-none text-dark">
+              <img src="images/tech.jpg" class="card-img-top" alt="Tech" style="height: 200px; object-fit: cover;">
+              <div class="card-body">
+                <div class="card-title text-center fw-bold">Tech</div>
+                <p class="card-text text-center">Total: <%= counts.technology || 0 %></p>
+              </div>
+            </a>
           </div>
           <div class="card col-lg-4 col-md-6 col-sm-6">
-            <img src="images/food.jpg" class="card-img-top" alt="">
-            <div class="card-body">
-              <div class="card-title text-center fw-bold">Food</div>
-              <p class="card-text text-center">By [Author Name] | Date: 2025-03-26
-                <br>❤️ Total Likes: 10
-              </p>
-              </p>
-            </div>
+            <a href="/blogs/category/Food" class="text-decoration-none text-dark">
+              <img src="images/food.jpg" class="card-img-top" alt="Tech" style="height: 200px; object-fit: cover;">
+              <div class="card-body">
+                <div class="card-title text-center fw-bold">Food</div>
+                <p class="card-text text-center">Total: <%= counts.food || 0 %></p>
+              </div>
+            </a>
           </div>
           <div class="card col-lg-4 col-md-6 col-sm-6">
-            <img src="images/book.jpg" class="card-img-top" alt="">
-            <div class="card-body">
-              <div class="card-title text-center fw-bold">Books</div>
-              <p class="card-text text-center">By [Author Name] | Date: 2025-03-26
-                <br>❤️ Total Likes: 10
-              </p>
-              </p>
-            </div>
+            <a href="/blogs/category/Books" class="text-decoration-none text-dark">
+              <img src="images/book.jpg" class="card-img-top" alt="Tech" style="height: 200px; object-fit: cover;">
+              <div class="card-body">
+                <div class="card-title text-center fw-bold">Book</div>
+                <p class="card-text text-center">Total: <%= counts.books || 0 %></p>
+              </div>
+            </a>
           </div>
           <div class="card col-lg-4 col-md-6 col-sm-6">
-            <img src="images/travel.jpg" class="card-img-top" alt="">
-            <div class="card-body">
-              <div class="card-title text-center fw-bold">Travel</div>
-              <p class="card-text text-center">By [Author Name] | Date: 2025-03-26
-                <br>❤️ Total Likes: 10
-              </p>
-              </p>
-            </div>
+            <a href="/blogs/category/Travel" class="text-decoration-none text-dark">
+              <img src="images/travel.jpg" class="card-img-top" alt="Tech" style="height: 200px; object-fit: cover;">
+              <div class="card-body">
+                <div class="card-title text-center fw-bold">Travel</div>
+                <p class="card-text text-center">Total: <%= counts.travel || 0 %></p>
+              </div>
+            </a>
           </div>
           <div class="card col-lg-4 col-md-6 col-sm-6">
-            <img src="images/health.jpg" class="card-img-top" alt="">
-            <div class="card-body">
-              <div class="card-title text-center fw-bold">Health</div>
-              <p class="card-text text-center">By [Author Name] | Date: 2025-03-26
-                <br>❤️ Total Likes: 10
-              </p>
-              </p>
-            </div>
+            <a href="/blogs/category/Health" class="text-decoration-none text-dark">
+              <img src="images/health.jpg" class="card-img-top" alt="Tech" style="height: 200px; object-fit: cover;">
+              <div class="card-body">
+                <div class="card-title text-center fw-bold">Lifestyle</div>
+                <p class="card-text text-center">Total: <%= counts.lifestyle || 0 %></p>
+              </div>
+            </a>
           </div>
           <div class="card col-lg-4 col-md-6 col-sm-6">
-            <img src="images/stock.jpg" class="card-img-top" alt="">
-            <div class="card-body">
-              <div class="card-title text-center fw-bold">Stocks</div>
-              <p class="card-text text-center">By [Author Name] | Date: 2025-03-26
-                <br>❤️ Total Likes: 10
-              </p>
-              </p>
-            </div>
+            <a href="/blogs/category/Stocks" class="text-decoration-none text-dark">
+              <img src="images/stock.jpg" class="card-img-top" alt="Tech" style="height: 200px; object-fit: cover;">
+              <div class="card-body">
+                <div class="card-title text-center fw-bold">Stocks</div>
+                <p class="card-text text-center">Total: <%= counts.stocks || 0 %></p>
+              </div>
+            </a>
           </div>
 
         </div>
