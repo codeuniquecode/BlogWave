@@ -57,9 +57,9 @@ exports.renderSingleBlog = async(req,res)=>{
         return res.status(404).json({message:"blog not found"});
     }
     // return res.status(200).json({message:"blog found.",blogs:blogData});
-    const matchBlogs = await recommendBlogs(req.params.id); 
+    const {relatedBlogs,sameAuthorBlogs} = await recommendBlogs(req.params.id); 
     //    console.log(`Testing ${matchBlogs}`);
-   return res.render('singleBlog.ejs',{blog:blogData,matchBlogs});
+   return res.render('singleBlog.ejs',{blog:blogData,relatedBlogs,sameAuthorBlogs});
    } catch (error) {
     return res.status(404).json({message:"error in finding blog-invalid id", error})
    }

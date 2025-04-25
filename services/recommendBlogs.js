@@ -28,8 +28,13 @@ const blogObjectId = new mongoose.Types.ObjectId(blogId);
             $sample: { size: 3 } 
         }
     ]);
+    const sameAuthorBlogs = await blog.find({
+        _id: { $ne: blogId },
+        author: blogData.author
+      }).limit(3);
+      
 
-    return relatedBlogs;
+    return {relatedBlogs,sameAuthorBlogs};
 }
 
 

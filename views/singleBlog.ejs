@@ -67,18 +67,30 @@
         <div class="container mt-5 mb-5">
             <div class="row">
                 <div class="col-md-8 offset-md-2">
-                    <h3 class="text-center fw-bold">You may also like</h3>
+                    <h5 class="text-start fw-bold">You may also like</h5>
                     <div class="row mt-1 mt-sm-2 ">
-                        <% matchBlogs.forEach((blog) => { %>
+                        <% relatedBlogs.forEach((blog) => { %>
                             <div class="">
                                 <ul>
-                                    <li> <p class="text-start fs-5 "><a href="/blogs/<%= blog._id %>"><%-blog.title%></a>
+                                    <li> <p class="text-start fs-6 "><a href="/blogs/<%= blog._id %>"><%-blog.title%></a>
                                     </p></li>
                                 </ul>
                               
                             </div>
                         <% }) %>
                     </div>
+                    <h5 class="text-start fw-bold">More from this author</h5>
+                    <div class="row mt-1 mt-sm-2 ">
+                        <% sameAuthorBlogs.forEach((blog) => { %>
+                            <div class="">
+                                <ul>
+                                    <li> <p class="text-start fs-6 "><a href="/blogs/<%= blog._id %>"><%-blog.title%></a>
+                                    </p></li>
+                                </ul>
+                              
+                            </div>
+                        <% }) %>
+
                 </div>
 
             </div>
