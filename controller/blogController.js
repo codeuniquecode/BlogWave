@@ -2,6 +2,7 @@ const path = require("path");
 const blog = require("../model/blogSchema");
 const user = require("../model/registerSchema");
 const fs = require('fs');
+const recommendBlogs = require("../services/recommendBlogs");
 exports.renderAllBlogs = async(req,res)=>{
     // const blogs = await blog.find();
     const blogs = await blog.find().populate('author', 'name');
@@ -56,7 +57,9 @@ exports.renderSingleBlog = async(req,res)=>{
         return res.status(404).json({message:"blog not found"});
     }
     // return res.status(200).json({message:"blog found.",blogs:blogData});
-    res.render('singleBlog.ejs',{blog:blogData});
+    const matchBlogs = await recommendBlogs(req.params.id); 
+    //    console.log(`Testing ${matchBlogs}`);
+   return res.render('singleBlog.ejs',{blog:blogData,matchBlogs});
    } catch (error) {
     return res.status(404).json({message:"error in finding blog-invalid id", error})
    }
