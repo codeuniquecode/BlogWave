@@ -68,7 +68,8 @@ exports.loginUser = async (req, res) => {
                 maxAge:24*60*60*1000
             });
             // console.log('login success');
-            return res.status(201).json({message:"login success"});
+            res.redirect('/');
+            // return res.status(201).json({message:"login success"});
         }else{
             return res.status(404).json({ message:"invalid password" });
         }
@@ -78,6 +79,7 @@ exports.loginUser = async (req, res) => {
     }
 }
 exports.logout = (req, res) => {
+    
     res.clearCookie('token');
     res.redirect('/');
 //    return res.status(200).json({ message: "Logged out successfully." });

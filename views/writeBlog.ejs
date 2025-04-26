@@ -98,6 +98,13 @@
     </nav>
     <main class="container-fluid "">
         <div class="container">
+            <!-- message to be displayed here -->
+            <%if(typeof message !== 'undefined' && message){%>
+                <div class="alert alert-danger alert-dismissible fade show text-dark bg-light" role="alert">
+                  <strong><%= message %></strong>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+              <%}%>
             <p class="fw-bold fs-2 text-center register">Write Your Blog</p>
             <form id="registerForm" action="/write" method="POST" enctype="multipart/form-data">
                 <div class="mb-3">

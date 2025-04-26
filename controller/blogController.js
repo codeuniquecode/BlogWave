@@ -43,7 +43,8 @@ exports.postBlog = async(req,res)=>{
     });
     await newBlog.save();
     if(newBlog){
-        return res.status(201).json({ message:"Blog posted successfully."});
+        return res.render('writeBlog',{message:"Blog posted successfully."});
+        // return res.status(201).json({ message:"Blog posted successfully."});
     }
     else{
         return res.status(404).json({ error: "Error in posting blogs." });
@@ -136,8 +137,8 @@ exports.updateBlog = async (req, res) => {
             new: true,
             runValidators: true,
         });
-
-        return res.status(200).json({ message: "Blog updated successfully", updatedBlog });
+        return res.render('writeBlog',{message:"Blog updated successfully."});
+        // return res.status(200).json({ message: "Blog updated successfully", updatedBlog });
 
     } catch (error) {
         console.error(error);
