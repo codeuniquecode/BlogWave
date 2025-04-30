@@ -28,8 +28,10 @@ app.use(express.static('./storage/'));
 const userRoutes = require('./routes/userRoutes');
 const blogRoutes = require('./routes/blogRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+const passwordRoutes = require('./routes/passwordRoutes');
 app.use('/',userRoutes);
 app.use('/',blogRoutes);
+app.use('/',passwordRoutes);
 
 app.listen(port,()=>{
     console.log('server is running on port - ', port);

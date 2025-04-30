@@ -20,7 +20,7 @@
             <form id="registerForm" action="/register" method="POST"> 
                 <div class="mb-3">
                     <label for="Username" class="form-label fw-bold">Username</label>
-                    <input type="text" class="form-control" name="name" id="Username" minlength="3" required>
+                    <input type="text" class="form-control" name="name" id="Username" minlength="5" required>
                   </div>
                 <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label fw-bold">Email</label>
@@ -28,7 +28,8 @@
                 </div>
                 <div class="mb-3">
                   <label for="exampleInputPassword1" class="form-label fw-bold">Password</label>
-                  <input type="password" class="form-control" id="password" name="password" minlength="8" required>
+                  <input type="password" class="form-control" title="Password must be at least 8 characters long and include uppercase, lowercase, a number, and a special character."   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}" id="password" name="password" minlength="8" required>
+                  
                 </div>
                 <div class="forget text-end">
                     <a href="/login" class="text-decoration-none">Already registered?</a>
