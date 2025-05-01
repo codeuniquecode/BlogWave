@@ -1,5 +1,6 @@
 const user = require("../model/registerSchema");
 const bcrypt = require('bcrypt');
+const sendEmail = require("../services/sendEmail");
 exports.renderChangePassword = (req,res)=>{
     res.render('changePassword');
 }
@@ -37,18 +38,45 @@ exports.handleForgetPassword = async (req,res)=>{
     if(!validEmail){
         return res.status(404).json({message:"Invalid Email !!!"});
     }
+    const otp = Math.floor(1000+ Math.random()*9000);
+    await sendEmail({
+        email,
+        otp,
+        subject:"Reset Password"
+    });
+    await user.findByIdAndUpdate(validEmail._id,{otp:otp,otpGeneratedTime:Date.now()});
+
     return res.status(200).json({message:"valid Email !!!"});
-    // console.log(email);
-    // res.status(200).json({message:"test done"});
-    // return;
+  
 }
 exports.enterNewPassword = async(req,res)=>{
     const {email,otp} = req.body;
-    console.log(email, otp);
+    const validData =await user.findOne({
+        email,
+        otp
+    });
+    if(!validData){
+        return res.status(404).json({message:"Invalid credentials"})
+    }
+    const currentTime = Date.now();
+    const differenceTime = currentTime-validData.otpGeneratedTime;
+    if(differenceTime>120000){
+        return res.status(404).json({message:"OTP has been expired !!!"});
+    }
+
     return res.status(200).json({message:"Enter a new password"})
 }
 exports.updatePassword = async(req,res)=>{
     const{email,password} = req.body;
-    console.log(`yei ho ${email} , ${password}`);
+    // console.log(`yei ho ${email} , ${password}`);
+    const hashedPassword = await bcrypt.hash(password,1);
+    const updatePassword = await user.updateOne({email},{
+        $set:{
+            password:hashedPassword
+        }
+    });
+    if(!updatePassword){
+        return res.status(404).json({message:"error in updating password"});
+    }
     return res.status(200).json({message:'password changed, relogin'});
 }

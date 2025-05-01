@@ -15,7 +15,7 @@ const sendEmail  = async (options)=>{
         from :"Unique <meverify57@gmail.com>",
         to:options.email,
         subject:  options.subject,
-        text:"your otp is" +options.otp
+        text:"Your OTP for BlogWave is " +options.otp
     };
     await transporter.sendMail(mailOptions);
 }
