@@ -19,6 +19,16 @@ const UserSchema = new mongoose.Schema({
         required:true,
         type:String,
         default:'user'
+    },
+    otp:{
+        required:false,
+        type:Number,
+        default:null
+    },
+    otpGeneratedTime:{
+        required:false,
+        type:Number,
+        default:null
     }
 });
 const user = mongoose.model("User",UserSchema);

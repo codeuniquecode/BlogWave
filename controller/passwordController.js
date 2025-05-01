@@ -26,3 +26,29 @@ exports.changePassword = async (req,res)=>{
     res.clearCookie('token');
     return res.render('login',{message:"Password changed successfully. Please re-login !!!"});
 }
+exports.renderForgetPassword = (req,res)=>{
+    res.render('forgetPassword');
+}
+exports.handleForgetPassword = async (req,res)=>{
+    const {email} = req.body;
+    const validEmail = await user.findOne({
+        email
+    });
+    if(!validEmail){
+        return res.status(404).json({message:"Invalid Email !!!"});
+    }
+    return res.status(200).json({message:"valid Email !!!"});
+    // console.log(email);
+    // res.status(200).json({message:"test done"});
+    // return;
+}
+exports.enterNewPassword = async(req,res)=>{
+    const {email,otp} = req.body;
+    console.log(email, otp);
+    return res.status(200).json({message:"Enter a new password"})
+}
+exports.updatePassword = async(req,res)=>{
+    const{email,password} = req.body;
+    console.log(`yei ho ${email} , ${password}`);
+    return res.status(200).json({message:'password changed, relogin'});
+}
