@@ -24,7 +24,9 @@
                   </div>
                 <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label fw-bold">Email</label>
-                  <input type="email" class="form-control" id="email" name="email" value="<%-userData.email%>" aria-describedby="emailHelp" required>
+                  <input type="email" class="form-control" id="email" name="email" value="<%-userData.email%>" aria-describedby="emailHelp" required readonly>
+                  <div id="emailHelp" class="form-text">Emails cannot be changed</div>
+                  
                 </div>
                 <!-- <div class="mb-3">
                   <label for="exampleInputPassword1" class="form-label fw-bold">Password</label>

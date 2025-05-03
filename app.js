@@ -1,11 +1,13 @@
 const express = require('express');
 const app = express();
 require('dotenv').config();
+const passport = require('passport');
+require('./config/passportConfig')(passport);
 const port = process.env.port;
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const methodOverride = require('method-override');
-
+const session = require('express-session');
 app.use(methodOverride('_method'));
 
 require('./model/index');
@@ -15,6 +17,14 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(session({
+    secret:process.env.SECRETKEY,
+    resave:false,
+    saveUninitialized:false
+}))
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 const multer = require('./middleware/multerConfig').multer;
 const storage = require('./middleware/multerConfig').storage;
@@ -29,9 +39,13 @@ const userRoutes = require('./routes/userRoutes');
 const blogRoutes = require('./routes/blogRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const passwordRoutes = require('./routes/passwordRoutes');
+const authRoutes = require('./routes/oauthRoutes'); // adjust path
+
+
 app.use('/',userRoutes);
 app.use('/',blogRoutes);
 app.use('/',passwordRoutes);
+app.use('/',authRoutes);
 
 app.listen(port,()=>{
     console.log('server is running on port - ', port);
