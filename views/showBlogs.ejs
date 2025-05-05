@@ -139,25 +139,34 @@
     <script>
       const search = document.getElementById('search');
       const message = document.getElementById('message');
+    
       search.addEventListener('input', () => {
         const keyword = search.value.toLowerCase();
         const blogs = document.querySelectorAll('.title');
-
+    
+        let found = false;
+    
         blogs.forEach(blog => {
-          const card = blog.closest('.col-lg-4'); // Get the whole column/card
+          const card = blog.closest('.col-lg-4'); // Adjust if your card class is different
           const title = blog.textContent.toLowerCase();
-
+    
           if (title.includes(keyword)) {
-            message.textContent = "blogs";
             card.style.display = 'block';
+            found = true;
           } else {
             card.style.display = 'none';
-            message.textContent = "No blogs found ! Try using different keyword.";
           }
         });
+    
+        // Only update the message once, after checking all blogs
+        if (found) {
+          message.textContent = '';
+        } else {
+          message.textContent = 'No blogs found! Try using different keyword.';
+        }
       });
-
     </script>
+    
 
 </body>
 

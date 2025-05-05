@@ -29,6 +29,11 @@ const UserSchema = new mongoose.Schema({
         required:false,
         type:Number,
         default:null
+    },
+    isOauth:{
+        required:false,
+        type:Boolean,
+        default:false
     }
 });
 const user = mongoose.model("User",UserSchema);

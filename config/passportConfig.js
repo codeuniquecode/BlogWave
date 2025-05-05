@@ -19,7 +19,8 @@ module.exports = function(passport) {
           name: profile.displayName,
           email: profile.emails[0].value,
           password: null,
-          role: 'user'
+          role: 'user',
+          isOauth:true
         });
         await newUser.save();
         return done(null, newUser);
