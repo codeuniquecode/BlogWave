@@ -44,7 +44,7 @@ form{
     color: black;
     transition: 0.3s;
 }
-.forget:hover{
+.forget:hover,.googleBtn:hover{
     /* font-weight: bold; */
     scale: 1.05 !important;
     transition: 0.3s !important;

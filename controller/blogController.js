@@ -43,7 +43,8 @@ exports.postBlog = async(req,res)=>{
     });
     await newBlog.save();
     if(newBlog){
-        return res.render('writeBlog',{message:"Blog posted successfully."});
+        req.flash('success','Blog posted successfully.');
+        return res.render('writeBlog',{flashMessage:req.flash('success')});
         // return res.status(201).json({ message:"Blog posted successfully."});
     }
     else{
@@ -73,7 +74,7 @@ exports.renderMyBlog = async(req,res)=>{
         }
         // return res.status(200).json({blogData});
         
-        res.render('showBlogs',{blogs:blogData, userId: req.userId});
+        res.render('showBlogs',{blogs:blogData, userId: req.userId,flashMessage: req.flash('success')});
         return;
 
     }
@@ -98,8 +99,21 @@ exports.deleteBlog = async(req,res)=>{
                 console.log('blog deleted with old image');
                 
             }
-        })
-        return res.status(200).json({message:"blog deleted successfully.",blogData});
+        });
+        try{
+            const blogData =  await blog.find({ author: req.user }).populate("author");
+            if(!blogData){
+                return res.status(404).json({message:"blog not found"});
+            }
+        }
+        catch(error){
+            console.log(error);
+            return res.status(404).json({message:"error in rendering your blog"});
+        }
+        req.flash('success','Blog Deleted Successfully');
+        res.redirect('/myBlogs');
+        // return res.render('showBlogs',{blogs:blogData, userId: req.userId,flashMessage:req.flash('success')});
+        // return res.status(200).json({message:"blog deleted successfully.",blogData});
     } catch (error) {
         console.log(error);
         return res.status(404).json({ error: "error in deleting blog" });
@@ -137,7 +151,8 @@ exports.updateBlog = async (req, res) => {
             new: true,
             runValidators: true,
         });
-        return res.render('writeBlog',{message:"Blog updated successfully."});
+        req.flash('success','Blog updated successfully.');
+        res.redirect('/myBlogs');
         // return res.status(200).json({ message: "Blog updated successfully", updatedBlog });
 
     } catch (error) {

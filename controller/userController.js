@@ -50,7 +50,7 @@ exports.registerUser = async (req, res) => {
     if (data) {
         req.flash('success','user registered successfully');
         return res.render('login',{flashMessage:req.flash('success')});
-        
+
         res.redirect('/login');
         // return res.status(201).json({ message: "user registered successfully.", data });
     }
@@ -77,10 +77,13 @@ exports.loginUser = async (req, res) => {
             res.redirect('/');
             // return res.status(201).json({message:"login success"});
         }else{
-            return res.status(404).json({ message:"invalid password" });
+            req.flash('error','Invalid Password')
+            return res.render('login',{flashMessage:req.flash('error')});
         }
     }
     else{
+        req.flash('error','Invalid Email');
+        return res.render('login',{flashMessage:req.flash('error')})
         return res.status(201).json({message:"invalid email"});
     }
 }
