@@ -34,7 +34,10 @@ exports.registerUser = async (req, res) => {
         email
     });
     if(userExists){
-        return res.status(404).json({message:"user with this email already exists"});
+        // return res.status(404).json({message:"user with this email already exists"});
+        req.flash('error','user with this email already exists');
+        return res.render('register',{flashMessage:req.flash('error')});
+        // return res.render('register',{req.flash('error')});
     }
     const hashedPassword = await bcrypt.hash(password, 1);
     
@@ -45,6 +48,9 @@ exports.registerUser = async (req, res) => {
     });
     await data.save();
     if (data) {
+        req.flash('success','user registered successfully');
+        return res.render('login',{flashMessage:req.flash('success')});
+        
         res.redirect('/login');
         // return res.status(201).json({ message: "user registered successfully.", data });
     }

@@ -9,7 +9,7 @@ const cookieParser = require('cookie-parser');
 const methodOverride = require('method-override');
 const session = require('express-session');
 app.use(methodOverride('_method'));
-
+const flash = require('connect-flash');
 require('./model/index');
 const User = require('./model/registerSchema');
 app.use(express.json());
@@ -25,7 +25,7 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use(flash());
 const multer = require('./middleware/multerConfig').multer;
 const storage = require('./middleware/multerConfig').storage;
 const upload = multer({storage:storage});

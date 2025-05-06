@@ -85,6 +85,7 @@
   <main class="container mt-1">
     <% if (blogs.length> 0) { %>
       <h1 class="text-center mb-sm-4" id="message">Blogs</h1>
+
       <div class="row">
         <% blogs.forEach((blog)=> { %>
           <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
@@ -163,6 +164,11 @@
           message.textContent = '';
         } else {
           message.textContent = 'No blogs found! Try using different keyword.';
+          message.style.height = '38vh';
+          message.style.display = 'flex';
+          message.style.alignItems = 'center';
+          message.style.justifyContent = 'center';
+          
         }
       });
     </script>
