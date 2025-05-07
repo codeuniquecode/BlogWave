@@ -46,7 +46,7 @@ app.use('/',userRoutes);
 app.use('/',blogRoutes);
 app.use('/',passwordRoutes);
 app.use('/',authRoutes);
-
+app.use('/',adminRoutes);
 app.listen(port,()=>{
     console.log('server is running on port - ', port);
 })

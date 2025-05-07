@@ -74,6 +74,11 @@ exports.loginUser = async (req, res) => {
                 maxAge:24*60*60*1000
             });
             // console.log('login success');
+            // console.log(validEmail);
+            console.log(validEmail.role);
+            if(validEmail.role==='admin'){
+                return res.redirect('/adminDashboard');
+            }
             res.redirect('/');
             // return res.status(201).json({message:"login success"});
         }else{
