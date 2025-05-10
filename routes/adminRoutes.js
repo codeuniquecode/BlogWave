@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controller/adminController');
 const adminController = require('../controller/adminController');
-router.route('/adminDashboard').get(adminController.renderDashboard);
-
+const { isAdmin } = require('../middleware/isAdmin');
+router.route('/adminDashboard').get(isAdmin,adminController.renderDashboard);
+router.route('/manageUser').get(adminController.renderUsers);
+router.route('/manageUser/:id').delete(adminController.deleteUser);
+router.route('/editUser/:id').get(adminController.renderUserData).patch(adminController.editUserData);
 module.exports = router;

@@ -47,22 +47,10 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg">
     <div class="container">
-      <a class="navbar-brand fw-bold fs-3" href="/">BlogWave</a>
+      <a class="navbar-brand fw-bold fs-3" href="/">Admin Panel</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <div class="navbar-nav ms-auto">
-          <div class="dropdown">
-            <button class="btn dropdown-toggle text-light" data-bs-toggle="dropdown">
-              Admin
-            </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/logout">Logout</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
     </div>
   </nav>
 
@@ -70,13 +58,11 @@
     <div class="row">
       <!-- Sidebar -->
       <div class="col-md-3 sidebar">
-        <h5 class="text-center">Admin Panel</h5>
-        <a href="#">Dashboard</a>
-        <a href="#">Manage Users</a>
-        <a href="#">Manage Blogs</a>
+        <a href="/manageUser">Manage Users</a>
+        <a href="/manageBlog">Manage Blogs</a>
         <a href="#">Contact Messages</a>
         <a href="#">Activity Logs</a>
-        <a href="#">Moderation</a>
+        <a href="/logout">Logout</a>
       </div>
 
       <!-- Main Content -->
