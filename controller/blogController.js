@@ -111,7 +111,7 @@ exports.deleteBlog = async(req,res)=>{
             return res.status(404).json({message:"error in rendering your blog"});
         }
         req.flash('success','Blog Deleted Successfully');
-        res.redirect('/myBlogs');
+        res.redirect('/blogs');
         // return res.render('showBlogs',{blogs:blogData, userId: req.userId,flashMessage:req.flash('success')});
         // return res.status(200).json({message:"blog deleted successfully.",blogData});
     } catch (error) {
@@ -152,7 +152,7 @@ exports.updateBlog = async (req, res) => {
             runValidators: true,
         });
         req.flash('success','Blog updated successfully.');
-        res.redirect('/myBlogs');
+        res.redirect('/blogs');
         // return res.status(200).json({ message: "Blog updated successfully", updatedBlog });
 
     } catch (error) {

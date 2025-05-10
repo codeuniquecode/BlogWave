@@ -1,3 +1,4 @@
+const blog = require("../model/blogSchema");
 const user = require("../model/registerSchema");
 
 exports.renderDashboard = (req,res)=>{
@@ -39,4 +40,8 @@ exports.editUserData = async(req,res)=>{
     req.flash('success','user data updated');
      const userData = await user.find();
     return res.render('users',{flashMessage:req.flash('success'),userData});
+}
+exports.renderAllBlogs = async(req,res)=>{
+    const blogs = await blog.find();
+    return res.render('adminEditBlog',{blogs})
 }
