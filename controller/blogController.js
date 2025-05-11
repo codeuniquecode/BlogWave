@@ -111,6 +111,13 @@ exports.deleteBlog = async(req,res)=>{
             return res.status(404).json({message:"error in rendering your blog"});
         }
         req.flash('success','Blog Deleted Successfully');
+      
+         const admin = await user.findOne({_id:req.user});
+         if(admin.role === 'admin'){
+                const blogs = await blog.find();
+                return res.render('adminEditBlog',{blogs,flashMessage:req.flash('success')});
+         }
+
         res.redirect('/blogs');
         // return res.render('showBlogs',{blogs:blogData, userId: req.userId,flashMessage:req.flash('success')});
         // return res.status(200).json({message:"blog deleted successfully.",blogData});
@@ -152,6 +159,11 @@ exports.updateBlog = async (req, res) => {
             runValidators: true,
         });
         req.flash('success','Blog updated successfully.');
+          const admin = await user.findOne({_id:req.user});
+         if(admin.role === 'admin'){
+                const blogs = await blog.find();
+                return res.render('adminEditBlog',{blogs,flashMessage:req.flash('success')});
+         }
         res.redirect('/blogs');
         // return res.status(200).json({ message: "Blog updated successfully", updatedBlog });
 
