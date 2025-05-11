@@ -1,8 +1,12 @@
 const blog = require("../model/blogSchema");
 const user = require("../model/registerSchema");
 
-exports.renderDashboard = (req,res)=>{
-    res.render('adminDashboard');
+exports.renderDashboard = async(req,res)=>{
+    const totalUsers = await user.find();
+   const totalBlogs = await blog.find();
+   const users = totalUsers.length;
+   const blogs = totalBlogs.length;
+    res.render('adminDashboard',{users, blogs});
 }
 exports.renderUsers = async (req,res)=>{
     const userData = await user.find();
