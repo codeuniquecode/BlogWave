@@ -73,7 +73,7 @@ exports.renderMyBlog = async(req,res)=>{
             return res.status(404).json({message:"blog not found"});
         }
         // return res.status(200).json({blogData});
-        
+        req.flash('success','blogs you have posted are shown here')
         res.render('showBlogs',{blogs:blogData, userId: req.userId,flashMessage: req.flash('success')});
         return;
 
