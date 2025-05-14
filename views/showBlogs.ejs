@@ -170,10 +170,13 @@
             card.style.display = 'none';
           }
         });
-    
+    if(keyword.length === 0) {
+      card.style.display = 'none';
+    }
         // Only update the message once, after checking all blogs
         if (found) {
           message.textContent = '';
+          message.style.height = '0vh';
         } else {
           message.textContent = 'No blogs found! Try using different keyword.';
           message.style.height = '38vh';
