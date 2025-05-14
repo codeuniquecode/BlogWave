@@ -41,6 +41,11 @@
       border-radius: 0.5rem;
       text-align: center;
     }
+    #categoryDoughnutChart{
+      max-width: 400px;
+      max-height: 400px;
+      margin-top: 2rem;
+    }
   </style>
 </head>
 <body>
@@ -90,35 +95,80 @@
         </div>
 
         <!-- Chart -->
-        <div class="card">
+        <div class="card text-center">
           <div class="card-body">
-            <h5 class="card-title">Blog Posts Per Day</h5>
+            <h5 class="card-title">Blog per category</h5>
             <canvas id="blogsChart" height="100"></canvas>
+            <br>
+            <canvas class="text-center" id="categoryDoughnutChart" ></canvas>
+
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <script>
-    const ctx = document.getElementById('blogsChart').getContext('2d');
-    new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-        datasets: [{
-          label: 'Blogs Posted',
-          data: [5, 7, 3, 8, 6, 4, 2],
-          backgroundColor: 'black'
-        }]
-      },
-      options: {
-        scales: {
-          y: { beginAtZero: true }
+ <script>
+  const labels = <%- JSON.stringify(categoryStats.map(stat => stat._id)) %>;
+  const data = <%- JSON.stringify(categoryStats.map(stat => stat.totalCount)) %>;
+
+  const ctx = document.getElementById('blogsChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'Blogs by Category',
+        data: data,
+        backgroundColor: 'black'
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          suggestedMax: 20
         }
       }
-    });
-  </script>
+    }
+  });
+  //doughnut chart
+   const doughnutLabels = <%- JSON.stringify(categoryStats.map(stat => stat._id)) %>;
+  const doughnutData = <%- JSON.stringify(categoryStats.map(stat => stat.totalCount)) %>;
+
+  const doughnutColors = [
+    '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#00C49F'
+  ]; // You can expand if more categories
+
+   const ctx2 = document.getElementById('categoryDoughnutChart').getContext('2d');
+  new Chart(ctx2, {
+    type: 'doughnut',
+    data: {
+      labels: doughnutLabels,
+      datasets: [{
+        label: 'Blog Categories Share (%)',
+        data: doughnutData,
+        backgroundColor: doughnutColors
+      }]
+    },
+    options: {
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const data = context.dataset.data;
+              const total = data.reduce((sum, value) => sum + value, 0);
+              const currentValue = context.raw;
+              const percentage = ((currentValue / total) * 100).toFixed(1);
+              return `${context.label}: ${percentage}% (${currentValue})`;
+            }
+          }
+        }
+      }
+    }
+  });
+</script>
+
 
   <script src="https://kit.fontawesome.com/2c8d038c04.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

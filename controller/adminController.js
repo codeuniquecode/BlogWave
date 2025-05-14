@@ -4,9 +4,17 @@ const user = require("../model/registerSchema");
 exports.renderDashboard = async(req,res)=>{
     const totalUsers = await user.find();
    const totalBlogs = await blog.find();
+const totalBlogsByCategory = await blog.aggregate([
+    {
+        $group: {
+            _id: "$category", // Group by category field
+            totalCount: { $sum: 1 } // Count occurrences
+        }
+    }
+]);
    const users = totalUsers.length;
    const blogs = totalBlogs.length;
-    res.render('adminDashboard',{users, blogs});
+    res.render('adminDashboard',{users, blogs,categoryStats:totalBlogsByCategory});
 }
 exports.renderUsers = async (req,res)=>{
     const userData = await user.find();
