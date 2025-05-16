@@ -18,6 +18,9 @@
     .navbar-brand {
       color: white !important;
     }
+    .navbar-nav .nav-link {
+      color: rgb(7, 7, 7) !important;
+    }
     .sidebar {
       height: 100vh;
       background-color: #000;
@@ -46,6 +49,45 @@
       max-height: 400px;
       margin-top: 2rem;
     }
+    #hamburger {
+      display: none;
+    }
+   
+     .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+    @media screen and (max-width: 768px) {
+     .navbar-nav .nav-link {
+      color: white !important;
+    }
+      #hamburger {
+        display: block;
+      }
+      #sidebar {
+        display: none;
+      }
+      .navbar-toggler {
+        display: block;
+      }
+      /* .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 250px;
+        height: 100vh;
+        z-index: 1000;
+        transition: transform 0.3s ease-in-out;
+        transform: translateX(-100%);
+      }
+      .sidebar.active {
+        transform: translateX(0);
+      }
+      .navbar-toggler {
+        display: block;
+      } */
+      
+    }
   </style>
 </head>
 <body>
@@ -53,16 +95,36 @@
   <nav class="navbar navbar-expand-lg">
     <div class="container">
       <a class="navbar-brand fw-bold fs-3" href="/"><i class="fa-solid fa-gear"></i> Admin Panel</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      <button id="hamburger" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse " id="navbarNav">
+      <ul class="navbar-nav text-light">
+        <li class="nav-item">
+          <a href="/manageUser" class="nav-link"><i class="fa-solid fa-users"></i> Manage Users</a>
+        </li>
+        <li class="nav-item">
+          
+        <a href="/manageBlog" class="nav-link"><i class="fa-solid fa-sliders"></i> Manage Blogs</a>
+        </li>
+        <li class="nav-item">
+          
+        <a href="#" class="nav-link"><i class="fa-solid fa-message"></i> Contact Messages</a>
+        </li>
+        <li class="nav-item">
+        
+        <a href="/logout" class="nav-link"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+        </li>
+       
+      </ul>
+    </div>
     </div>
   </nav>
 
   <div class="container-fluid">
     <div class="row">
       <!-- Sidebar -->
-      <div class="col-md-3 sidebar">
+      <div class="col-md-3 sidebar" id="sidebar">
         <a href="/manageUser"><i class="fa-solid fa-users"></i> Manage Users</a>
         <a href="/manageBlog"><i class="fa-solid fa-sliders"></i> Manage Blogs</a>
         <a href="#"><i class="fa-solid fa-message"></i> Contact Messages</a>
@@ -72,7 +134,7 @@
 
       <!-- Main Content -->
       <div class="col-md-9 p-4">
-        <h2 class="mb-4 text-center">Dashboard</h2>
+        <!-- <h2 class="mb-4 text-center">Dashboard</h2> -->
         <div class="row mb-4">
           <div class="col-md-4">
             <div class="dashboard-card">
@@ -95,13 +157,12 @@
         </div>
 
         <!-- Chart -->
-        <div class="card text-center">
-          <div class="card-body">
-            <h5 class="card-title">Blog per category</h5>
-            <canvas id="blogsChart" height="100"></canvas>
-            <br>
+        <div class="card d-flex align-items-center justify-content-center">
+          <div class="card-body ">
+            <h5 class="card-title text-center">Blog per category</h5>
             <canvas class="text-center" id="categoryDoughnutChart" ></canvas>
-
+ <canvas id="blogsChart" height="100"></canvas>
+            <br>
           </div>
         </div>
       </div>
@@ -112,26 +173,26 @@
   const labels = <%- JSON.stringify(categoryStats.map(stat => stat._id)) %>;
   const data = <%- JSON.stringify(categoryStats.map(stat => stat.totalCount)) %>;
 
-  const ctx = document.getElementById('blogsChart').getContext('2d');
-  new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: labels,
-      datasets: [{
-        label: 'Blogs by Category',
-        data: data,
-        backgroundColor: 'black'
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-          suggestedMax: 20
-        }
-      }
-    }
-  });
+  // const ctx = document.getElementById('blogsChart').getContext('2d');
+  // new Chart(ctx, {
+  //   type: 'bar',
+  //   data: {
+  //     labels: labels,
+  //     datasets: [{
+  //       label: 'Blogs by Category',
+  //       data: data,
+  //       backgroundColor: 'black'
+  //     }]
+  //   },
+  //   options: {
+  //     scales: {
+  //       y: {
+  //         beginAtZero: true,
+  //         suggestedMax: 20
+  //       }
+  //     }
+  //   }
+  // });
   //doughnut chart
    const doughnutLabels = <%- JSON.stringify(categoryStats.map(stat => stat._id)) %>;
   const doughnutData = <%- JSON.stringify(categoryStats.map(stat => stat.totalCount)) %>;
