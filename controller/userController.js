@@ -219,6 +219,7 @@ try {
 }
     
 }
-
-
+exports.renderChatPage = (req,res)=>{
+    res.render('chat')
+}
 

@@ -20,5 +20,6 @@ router.route('/users/:id').get(userController.renderUser).put(userController.upd
 // user apis
 router.route('/editProfile').get(isLoggedIn,userController.renderEditProfile).post(isLoggedIn,userController.editProfile);
 
-//post apis
+// chat api
+router.route('/chat').get(userController.renderChatPage);
 module.exports = router;

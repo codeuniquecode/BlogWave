@@ -12,6 +12,7 @@ app.use(methodOverride('_method'));
 const flash = require('connect-flash');
 require('./model/index');
 const User = require('./model/registerSchema');
+const {Server} = require('socket.io')
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -47,6 +48,12 @@ app.use('/',blogRoutes);
 app.use('/',passwordRoutes);
 app.use('/',authRoutes);
 app.use('/',adminRoutes);
-app.listen(port,()=>{
+const server = app.listen(port,()=>{
     console.log('server is running on port - ', port);
 })
+
+const io = new Server(server);
+// console.log(io);
+// return;
+module.exports = io;
+require('./controller/chatController')
