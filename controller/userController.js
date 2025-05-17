@@ -219,7 +219,13 @@ try {
 }
     
 }
-exports.renderChatPage = (req,res)=>{
-    res.render('chat')
+exports.renderChatPage = async(req,res)=>{
+    const userId = req.user;
+    let isAdmin = false;
+    const userData = await user.findOne({
+        _id:userId
+    })
+   
+    res.render('chat',{userId})
 }
 

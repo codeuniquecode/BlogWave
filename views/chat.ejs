@@ -35,8 +35,11 @@
         <form id="chat" action="/message" method="POST">
           <div class="mb-1">
             <label for="exampleInputEmail1" class="form-label fw-bold ">Chat with Admin</label>
-            <div id="displayMessage" class="fw-bold"></div>
-            
+           <div id="adminStatus" class="text-success fw-bold"></div>
+
+
+            <div id="displayMessage" class="fw-bold text-start"></div>
+
             <input type="text" class="form-control" id="message" name="message" placeholder="enter your message here" aria-describedby="emailHelp" required>
           </div>
           <div class="text-center mb-3">
@@ -78,8 +81,26 @@
           <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"
             integrity="sha384-mkQ3/7FUtcGyoppY6bz/PORYoGqOl7/aSUMn2ymDOJcapfS6PHqxhRTMh1RR0Q6+"
             crossorigin="anonymous"></script>
+            
           <script>
+           
             const socket = io();
+            socket.emit("join", { userId: "<%= userId %>" });
+             socket.on('adminStatus', ({ isOnline }) => {
+    const statusDiv = document.getElementById('adminStatus');
+    if (statusDiv) {
+      statusDiv.textContent = isOnline ? 'Admin is online' : 'Admin is offline';
+
+    }
+    if (isOnline) {
+      statusDiv.classList.add('text-success');
+      statusDiv.classList.remove('text-danger');
+    } else {
+      statusDiv.classList.add('text-danger');
+      statusDiv.classList.remove('text-success');
+    }
+
+  });
             const form = document.getElementById('chat');
             const messageInput = document.getElementById('message');
             const displayMessage = document.getElementById('displayMessage');
@@ -89,14 +110,26 @@
               socket.emit('message', message);
               messageInput.value = '';
             });
+            
+
             socket.on('sendMessage',(data)=>{
               // console.log(data);
               const paragraph = document.createElement('p');
-              paragraph.textContent = data;
+              if(data.isAdmin){
+                paragraph.textContent =`Admin : ${data.data} `;
+              }else{
+              paragraph.textContent =`${data.username} : ${data.data} `;
+              }
+              // paragraph.textContent = data;
               displayMessage.appendChild(paragraph);
              displayMessage.scrollTop = displayMessage.scrollHeight;
               
             })
+            socket.on('sendUserData',(data)=>{
+              console.log(data)
+            })
+           
+
           </script>
 
 

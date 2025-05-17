@@ -21,5 +21,5 @@ router.route('/users/:id').get(userController.renderUser).put(userController.upd
 router.route('/editProfile').get(isLoggedIn,userController.renderEditProfile).post(isLoggedIn,userController.editProfile);
 
 // chat api
-router.route('/chat').get(userController.renderChatPage);
+router.route('/chat').get(isAuthenticated,userController.renderChatPage);
 module.exports = router;
