@@ -48,6 +48,10 @@ app.use('/',blogRoutes);
 app.use('/',passwordRoutes);
 app.use('/',authRoutes);
 app.use('/',adminRoutes);
+app.get('/loaderio-910651ac44446c8cdefd998e229a9c87/', (req, res) => {
+  res.send('loaderio-910651ac44446c8cdefd998e229a9c87');
+});
+
 const server = app.listen(port,()=>{
     console.log('server is running on port - ', port);
 })
