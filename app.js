@@ -42,7 +42,7 @@ const adminRoutes = require('./routes/adminRoutes');
 const passwordRoutes = require('./routes/passwordRoutes');
 const authRoutes = require('./routes/oauthRoutes'); // adjust path
 const { rateLimit } = require('express-rate-limit');
-
+app.set('trust proxy', 1);
 const limiter = rateLimit({
     windowMs: 2 * 60 * 1000,
     max: 5,
