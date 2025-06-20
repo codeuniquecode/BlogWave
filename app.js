@@ -41,7 +41,15 @@ const blogRoutes = require('./routes/blogRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const passwordRoutes = require('./routes/passwordRoutes');
 const authRoutes = require('./routes/oauthRoutes'); // adjust path
+const { rateLimit } = require('express-rate-limit');
 
+const limiter = rateLimit({
+    windowMs: 2 * 60 * 1000,
+    max: 5,
+    message: 'Too many attempts, please try again after 2 minutes'
+  });
+  
+app.use('/verifyOtp',limiter);
 
 app.use('/',userRoutes);
 app.use('/',blogRoutes);
