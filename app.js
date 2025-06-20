@@ -48,9 +48,14 @@ const limiter = rateLimit({
     max: 5,
     message: 'Too many attempts, please try again after 2 minutes'
   });
-  
+  const passwordLimiter = rateLimit({
+    windowMs: 2 * 60 * 1000,
+    max: 5,
+    message: 'Too many attempts, please try again after 2 minutes'
+  });
 app.use('/verifyOtp',limiter);
 
+app.use('/forgotPassword',passwordLimiter);
 app.use('/',userRoutes);
 app.use('/',blogRoutes);
 app.use('/',passwordRoutes);
