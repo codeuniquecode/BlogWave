@@ -7,12 +7,11 @@
 ### 🧑‍💻 Users
 - Register and log in securely
 - Browse and read blog posts
-- Like on blogs
 - Profile view 
 
 ### 👨‍💼 Admin
 - Full blog CRUD (Create, Read, Update, Delete)
-- Manage user content and comments
+- Manage user content 
 - View and respond to user messages or chats
 - Dashboard with blog analytics 
 
