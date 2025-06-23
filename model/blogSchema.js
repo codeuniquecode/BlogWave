@@ -28,6 +28,11 @@ const blogSchema = mongoose.Schema({
     date:{
         type:String,
         default:moment(date).format('MMMM Do YYYY, h:mm:ss a')
+    },
+    isApproved:{
+        type:Boolean,
+        required:true,
+        default:false
     }
 });
 
