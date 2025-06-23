@@ -8,7 +8,8 @@ router.route('/adminDashboard').get(isAdmin,adminController.renderDashboard);
 router.route('/manageUser').get(adminController.renderUsers);
 router.route('/manageUser/:id').delete(adminController.deleteUser);
 router.route('/editUser/:id').get(adminController.renderUserData).patch(adminController.editUserData);
-
+router.route('/approve/:id').patch(adminController.approveBlog);
+router.route('/reject/:id').patch(adminController.rejectBlog);
 
 // for blogs
 router.route('/manageBlog').get(adminController.renderAllBlogs);

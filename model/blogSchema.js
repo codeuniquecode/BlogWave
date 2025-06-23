@@ -30,9 +30,9 @@ const blogSchema = mongoose.Schema({
         default:moment(date).format('MMMM Do YYYY, h:mm:ss a')
     },
     isApproved:{
-        type:Boolean,
-        required:true,
-        default:false
+        type:String,
+        enum:["pending","rejected","approved"],
+        default:'pending'
     }
 });
 

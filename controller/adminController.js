@@ -57,3 +57,41 @@ exports.renderAllBlogs = async(req,res)=>{
     const blogs = await blog.find();
     return res.render('adminEditBlog',{blogs})
 }
+exports.approveBlog = async(req,res)=>{
+    const id = req.params.id;
+    if(!id){
+        return res.status(404).json({message:"Blog not found"});
+    }
+    try {
+        const approveBlog = await blog.findByIdAndUpdate(req.params.id,{
+            isApproved:'approved'
+        });
+        if(!approveBlog){
+            return res.status(404).json({message:"error in approving blog"});
+        }
+        return res.status(200).json({message:"blog approved"});
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({message:"internal server error"});
+    }
+}
+exports.rejectBlog = async(req,res)=>{
+ const id = req.params.id;
+    if(!id){
+        return res.status(404).json({message:"Blog not found"});
+    }
+    try {
+        const rejectBlog = await blog.findByIdAndUpdate(req.params.id,{
+            isApproved:'rejected'
+        });
+        if(!rejectBlog){
+            return res.status(404).json({message:"error in rejecting blog"});
+        }
+        return res.status(200).json({message:"blog rejected"});
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({message:"internal server error"});
+    }
+}
