@@ -95,3 +95,15 @@ exports.rejectBlog = async(req,res)=>{
         return res.status(500).json({message:"internal server error"});
     }
 }
+exports.renderBlogs = async(req,res)=>{
+     const blogs = await blog.find().populate('author', 'name');
+    if(blogs){
+        
+       return res.render('reviewBlogs',{blogs});
+
+        // return res.status(200).json({ blogs });
+    }
+    else{
+    return res.status(404).json({ error: "Blogs not found" });
+    }
+}
