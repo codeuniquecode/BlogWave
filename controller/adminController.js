@@ -63,17 +63,21 @@ exports.approveBlog = async(req,res)=>{
         return res.status(404).json({message:"Blog not found"});
     }
     try {
-        const approveBlog = await blog.findByIdAndUpdate(req.params.id,{
-            isApproved:'approved'
+        const updatedBlog = await blog.findByIdAndUpdate(id, {
+            isApproved: 'approved'
         });
-        if(!approveBlog){
-            return res.status(404).json({message:"error in approving blog"});
-        }
-        return res.status(200).json({message:"blog approved"});
 
+        if (!updatedBlog) {
+            req.flash('error', 'Error in approving blog');
+        } else {
+            req.flash('success', 'Blog Approved');
+        }
+
+         res.redirect(req.get('Referer')); // go back to the previous page
     } catch (error) {
-        console.log(error);
-        return res.status(500).json({message:"internal server error"});
+        console.error(error);
+        req.flash('error', 'Failed to approve blog');
+         res.redirect(req.get('Referer'));
     }
 }
 exports.rejectBlog = async(req,res)=>{
@@ -85,21 +89,29 @@ exports.rejectBlog = async(req,res)=>{
         const rejectBlog = await blog.findByIdAndUpdate(req.params.id,{
             isApproved:'rejected'
         });
-        if(!rejectBlog){
-            return res.status(404).json({message:"error in rejecting blog"});
+        if (!rejectBlog) {
+            req.flash('error', 'Error in rejecting blog');
+        } else {
+            req.flash('success', 'Blog Rejected');
         }
-        return res.status(200).json({message:"blog rejected"});
-
+         res.redirect(req.get('Referer'));
     } catch (error) {
-        console.log(error);
-        return res.status(500).json({message:"internal server error"});
+         console.error(error);
+        req.flash('error', 'Failed to approve blog');
+         res.redirect(req.get('Referer'));
     }
 }
 exports.renderBlogs = async(req,res)=>{
-     const blogs = await blog.find().populate('author', 'name');
+    const successMessages = req.flash('success');
+        const errorMessages = req.flash('error');
+const blogs = await blog.find({
+  isApproved: { $ne: 'approved' }
+}).populate('author', 'name');
+
+    //  const blogs = await blog.find().populate('author', 'name');
     if(blogs){
         
-       return res.render('reviewBlogs',{blogs});
+       return res.render('reviewBlogs',{blogs,flashMessage: successMessages.length > 0 ? successMessages[0] : (errorMessages.length > 0 ? errorMessages[0] : null)});
 
         // return res.status(200).json({ blogs });
     }

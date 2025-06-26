@@ -5,7 +5,11 @@ const fs = require('fs');
 const recommendBlogs = require("../services/recommendBlogs");
 exports.renderAllBlogs = async(req,res)=>{
     // const blogs = await blog.find();
-    const blogs = await blog.find().populate('author', 'name');
+    const blogs = await blog.find({
+  isApproved: { $nin: ['rejected', 'pending'] }
+}).populate('author', 'name');
+
+    // const blogs = await blog.find().populate('author', 'name');
     if(blogs){
         res.render('showBlogs',{blogs,userId:req.userId});
 

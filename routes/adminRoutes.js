@@ -11,6 +11,7 @@ router.route('/editUser/:id').get(adminController.renderUserData).patch(adminCon
 router.route('/approve/:id').patch(adminController.approveBlog);
 router.route('/reject/:id').patch(adminController.rejectBlog);
 router.route('/seeBlogs').get(adminController.renderBlogs);
+router.route('/viewBlog/:id').get(blogController.renderSingleBlog);
 // for blogs
 router.route('/manageBlog').get(adminController.renderAllBlogs);
 module.exports = router;
